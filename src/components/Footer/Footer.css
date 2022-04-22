@@ -1,0 +1,30 @@
+.footer {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 89.0625%;
+  max-width: 1280px;
+  min-height: 172px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 0 0px;
+}
+
+.footer__description {
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 16px;
+  color: #a0a0a0;
+  padding: 20px 0;
+}
+
+.footer__nav {
+  padding-top: 20px;
+  border-top: #e8e8e8 solid 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__coopyright {
+  margin: 0;
+}
