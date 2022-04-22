@@ -1,0 +1,21 @@
+.account-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.account-menu__btn {
+  background: #000000;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #fff;
+  padding: 8px 20px;
+}
+
+.account-menu__link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
