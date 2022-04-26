@@ -1,0 +1,5 @@
+.articles {
+  display: flex;
+  margin: 70px 0 110px;
+  gap: 40px;
+}
