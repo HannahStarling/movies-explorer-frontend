@@ -1,0 +1,14 @@
+.tech-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 60px;
+  background: #e8e8e8;
+  border-radius: 10px;
+}
+
+.tech-icon__text {
+  line-height: 17px;
+  letter-spacing: -0.04em;
+}
