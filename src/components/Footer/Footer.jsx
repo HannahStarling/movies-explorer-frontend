@@ -1,14 +1,17 @@
 import React from 'react';
-import { Socials } from '../Socials/Socials';
+import { links } from '../../utils/constants';
+import { Copyright } from '../Copyright/Copyright';
+import { Links } from '../Links/Links';
+import { Paragraph } from '../Paragraph/Paragraph';
 import './Footer.css';
 
 export const Footer = () => {
   return (
     <footer className={'footer'}>
-      <p className={'footer__description'}>Учебный проект Яндекс.Практикум х&nbsp;BeatFilm.</p>
+      <Paragraph className={'footer__description'} text='Учебный проект Яндекс.Практикум х&nbsp;BeatFilm.' />
       <nav className='footer__nav'>
-        <p className={'footer__coopyright'}>&copy; {new Date().getFullYear()}</p>
-        <Socials />
+        <Copyright />
+        <Links listStyle={'footer__links'} socials={links.socials} sites={links.sites} />
       </nav>
     </footer>
   );
