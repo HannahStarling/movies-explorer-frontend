@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { List } from '../../List/List';
 
 import './FilmMenu.css';
 
 export const FilmMenu = () => {
   return (
-    <ul className={'film-menu list'}>
+    <List listStyle={'film-menu'}>
       <li>
         <Link to={'/movies'} className={'film-menu__link link film-menu__link_active'}>
           Фильмы
@@ -16,6 +17,6 @@ export const FilmMenu = () => {
           Сохранённые фильмы
         </Link>
       </li>
-    </ul>
+    </List>
   );
 };
