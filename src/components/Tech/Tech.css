@@ -1,0 +1,12 @@
+.tech__title {
+  margin: 90px 0 0 0;
+  align-self: center;
+}
+
+.tech__description {
+  margin: 26px 0 100px 0;
+  max-width: 460px;
+  align-self: center;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
