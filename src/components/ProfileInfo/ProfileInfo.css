@@ -1,0 +1,14 @@
+.profile__title {
+  margin: 0 0 18px;
+}
+
+.profile__description {
+  margin: 0 0 26px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.11;
+}
+
+.profile__text {
+  line-height: 1.57;
+}

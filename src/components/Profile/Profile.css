@@ -1,0 +1,22 @@
+.profile {
+  margin: 66px 0 0;
+  display: grid;
+  grid-template-areas:
+    'info picture'
+    'links picture';
+  gap: 99px 270px;
+}
+
+.profile__info {
+  grid-area: info;
+}
+
+.profile__links {
+  display: flex;
+  gap: 20px;
+  grid-area: links;
+}
+
+.profile__photo {
+  grid-area: picture;
+}

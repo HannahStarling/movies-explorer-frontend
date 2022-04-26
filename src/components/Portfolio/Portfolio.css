@@ -1,0 +1,25 @@
+.portfolio__title {
+  margin: 100px 0 50px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.11;
+  color: #a0a0a0;
+}
+
+.portfolio__works {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.portfolio__work {
+  font-size: 30px;
+  line-height: 1.67;
+  letter-spacing: -0.04em;
+  padding: 0 0 19px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.portfolio__work:last-child {
+  border-bottom: none;
+}
