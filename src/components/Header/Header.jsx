@@ -3,11 +3,9 @@ import { AccountMenu } from '../Navigation/AccountMenu/AccountMenu';
 import { Logo } from '../Logo/Logo';
 import './Header.css';
 
-const header = 'header';
-
-function Header(props) {
+function Header() {
   return (
-    <header className={header}>
+    <header className={'header'}>
       <Logo />
       <AccountMenu />
     </header>
