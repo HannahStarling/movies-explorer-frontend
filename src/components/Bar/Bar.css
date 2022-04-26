@@ -1,0 +1,34 @@
+.bar {
+  margin: 0;
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas:
+    'one four'
+    'front back';
+}
+
+.bar__week {
+  padding: 10px 14px;
+  line-height: 17px;
+  box-sizing: border-box;
+}
+
+.bar__week_type_black {
+  grid-area: one;
+  color: #fff;
+  background-color: #000;
+}
+
+.bar__week_type_gray {
+  grid-area: four;
+  background: #f2f2f2;
+}
+
+.bar__code {
+  margin: 0;
+  padding: 15px 0 0;
+  font-weight: 500;
+  line-height: 1.21;
+  color: #a0a0a0;
+}
