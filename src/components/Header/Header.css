@@ -3,9 +3,12 @@
   box-sizing: border-box;
   width: 100%;
   padding: 0px 70px;
-  background: #f3c1f8;
   min-height: 74px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header_type_pink {
+  background: #f3c1f8;
 }
