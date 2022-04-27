@@ -1,0 +1,11 @@
+.pagination {
+  padding: 10px calc((70 / 1280) * 100vw) 80px;
+}
+
+.pagination__btn {
+  background: #f9f9f9;
+  padding: 11px 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
