@@ -41,7 +41,7 @@
 .movie__btn {
   box-sizing: border-box;
   grid-area: btn;
-  padding: 30px;
+  padding: 15px;
   background: url(../../images/favorite__btn.svg) no-repeat center / contain;
 }
 

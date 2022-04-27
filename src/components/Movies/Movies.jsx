@@ -14,6 +14,9 @@ const movies = [
   { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
   { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
   { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
 ];
 
 export const Movies = () => {
