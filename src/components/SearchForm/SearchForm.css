@@ -1,0 +1,21 @@
+.form_type_search {
+  justify-content: space-between;
+  padding-bottom: 83px;
+  border-bottom: 1px solid rgba(170, 170, 170, 0.2);
+  gap: 41px;
+}
+
+@media all and (max-width: 1023px) {
+  .form_type_search {
+    flex-direction: column;
+    gap: 37px;
+    padding-bottom: 57px;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .form_type_search {
+    gap: 44px;
+    padding-bottom: 44px;
+  }
+}

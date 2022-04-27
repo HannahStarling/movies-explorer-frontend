@@ -1,0 +1,46 @@
+.movie-search {
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.movie-search__input {
+  box-sizing: border-box;
+  padding: 15px 22px;
+  width: 100%;
+  border: 1.5px solid rgba(170, 170, 170, 0.2);
+  border-radius: 50px;
+}
+
+.movie-search__input:focus {
+  opacity: 1;
+  outline: 3px solid #ff4062;
+}
+
+.movie-search__input::placeholder {
+  color: #a0a0a0;
+}
+
+.movie-search__btn {
+  top: 7px;
+  right: 7px;
+  position: absolute;
+  padding: 17px 40px;
+  border-radius: 48px;
+  background: #000 url(../../images/loupe.svg) no-repeat center;
+}
+
+@media all and (max-width: 1023px) {
+  .movie-search__input {
+    padding: 15px 18px;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .movie-search__input {
+    padding: 15px 16px;
+  }
+}
