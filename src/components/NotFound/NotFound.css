@@ -1,0 +1,61 @@
+.not-found {
+  height: 100vh;
+  padding: calc((30 / 700) * 100%) 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: calc((184 / 700) * 100vh);
+}
+
+.not-found__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found__status {
+  font-size: calc((140 / 1280) * 100vw);
+  line-height: calc((169 / 1280) * 100vw);
+  font-weight: 400;
+}
+
+.not-found__message {
+  font-size: calc((16 / 1280) * 100vw);
+  line-height: calc((19 / 1280) * 100vw);
+}
+
+@media all and (max-width: 1023px) {
+  .not-found {
+    padding: calc((408 / 1024) * 100vh) 0 calc((222 / 1024) * 100vh);
+    gap: calc((184 / 1024) * 100vh);
+  }
+
+  .not-found__status {
+    font-size: calc((140 / 768) * 100vw);
+    line-height: calc((169 / 768) * 100vw);
+  }
+
+  .not-found__message {
+    font-size: calc((16 / 768) * 100vw);
+    line-height: calc((19 / 768) * 100vw);
+  }
+}
+
+@media all and (max-width: 719px) {
+  .not-found {
+    padding: calc((30 / 780) * 100vh) 0;
+    gap: calc((284 / 780) * 100vh);
+  }
+
+  .not-found__status {
+    font-size: calc((80 / 320) * 100vw);
+    line-height: calc((97 / 320) * 100vw);
+  }
+
+  .not-found__message {
+    font-size: calc((12 / 320) * 100vw);
+    line-height: calc((15 / 320) * 100vw);
+  }
+}
