@@ -10,3 +10,7 @@
 .link:hover {
   opacity: 0.7;
 }
+
+.link:focus {
+  outline: 3px solid #ff4062;
+}

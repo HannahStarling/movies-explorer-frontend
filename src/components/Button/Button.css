@@ -10,3 +10,7 @@
 .button:hover {
   opacity: 0.8;
 }
+
+.button:focus {
+  outline: 3px solid #ff4062;
+}
