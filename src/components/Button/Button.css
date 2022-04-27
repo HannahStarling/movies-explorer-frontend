@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   border: none;
+  background: transparent;
   cursor: pointer;
   transition: opacity 0.8s ease;
 }
