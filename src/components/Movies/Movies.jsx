@@ -1,32 +1,27 @@
 import React from 'react';
 import { List } from '../List/List';
 import { Movie } from '../Movie/Movie';
+import { movies } from '../../utils/constants';
+import { InfoBanner } from '../InfoBanner/InfoBanner';
 import { Section } from '../Section/Section';
 import './Movies.css';
 
-const movies = [
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-];
-
-export const Movies = () => {
+export const Movies = ({ location = '/movies' }) => {
   return (
-    <Section>
-      <List listStyle='movies__list'>
-        {movies.map((movie, movieId) => {
-          return <Movie key={movieId} {...movie} />;
-        })}
-      </List>
+    <Section className='movies'>
+      {movies.length ? (
+        <List listStyle='movies__list'>
+          {location === '/movies'
+            ? movies.map((movie, movieId) => {
+                return <Movie key={movieId} {...movie} />;
+              })
+            : [...movies].slice(1, 4).map((movie, movieId) => {
+                return <Movie key={movieId} {...movie} />;
+              })}
+        </List>
+      ) : (
+        <InfoBanner info={'Не добавлено ни одного фильма '} />
+      )}
     </Section>
   );
 };

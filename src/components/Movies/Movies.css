@@ -1,3 +1,9 @@
+.movies {
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+}
+
 .movies__list {
   box-sizing: border-box;
   padding: calc((70 / 1280) * 100vw);

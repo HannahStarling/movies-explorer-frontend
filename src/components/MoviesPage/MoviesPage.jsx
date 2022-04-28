@@ -4,6 +4,7 @@ import { Footer } from '../Footer/Footer';
 import { MovieForm } from '../MovieForm/MovieForm';
 import { Movies } from '../Movies/Movies';
 import { Pagination } from '../Pagination/Pagination';
+import { movies } from '../../utils/constants';
 
 export const MoviesPage = () => {
   return (
@@ -12,7 +13,7 @@ export const MoviesPage = () => {
       <main>
         <MovieForm />
         <Movies />
-        <Pagination />
+        {movies.length && <Pagination />}
       </main>
       <Footer />
     </>
