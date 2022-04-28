@@ -5,8 +5,16 @@ import './Navigation.css';
 
 export const Navigation = ({ location }) => {
   return (
-    <nav className="navigation">
-      {location === '/' ? <AuthMenu /> : <AccountMenu />}
-    </nav>
+    <>
+      {location === '/' ? (
+        <nav>
+          <AuthMenu />
+        </nav>
+      ) : (
+        <nav className='navigation'>
+          <AccountMenu />
+        </nav>
+      )}
+    </>
   );
 };

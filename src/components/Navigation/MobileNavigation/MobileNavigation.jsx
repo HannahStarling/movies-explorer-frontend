@@ -7,18 +7,12 @@ import { MenuLink } from '../MenuLink/MenuLink';
 import './MobileNavigation.css';
 
 export const MobileNavigation = () => {
-  const isOpen = true;
+  const isOpen = false;
   return (
-    <aside
-      className={`dropdown-menu ${isOpen ? 'dropdown-menu_opened' : ''}`.trim()}
-    >
-      <Button className="mobile-navigation_btn" />
-      <nav
-        className={`mobile-navigation ${
-          isOpen ? 'mobile-navigation_opened' : ''
-        }`.trim()}
-      >
-        <Menu className="menu-mobile">
+    <aside className={`dropdown-menu ${isOpen ? 'dropdown-menu_opened' : ''}`.trim()}>
+      <Button className='mobile-navigation_btn' />
+      <nav className={`mobile-navigation ${isOpen ? 'mobile-navigation_opened' : ''}`.trim()}>
+        <Menu className='menu-mobile'>
           {[...ROUTES.navigation]
             .filter(({ link }) => {
               return link === '/';

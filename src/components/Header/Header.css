@@ -12,3 +12,15 @@
 .header_type_pink {
   background: #f3c1f8;
 }
+
+@media all and (max-width: 1023px) {
+  .header {
+    padding: 0px 30px;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .header {
+    padding: 0px 14px;
+  }
+}
