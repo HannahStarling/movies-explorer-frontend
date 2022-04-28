@@ -1,10 +1,12 @@
 import React from 'react';
-import { FilmMenu } from './FilmMenu/FilmMenu';
+import { AccountMenu } from './AccountMenu/AccountMenu';
+import { AuthMenu } from './AuthMenu/AuthMenu';
+import './Navigation.css';
 
-export const Navigation = () => {
+export const Navigation = ({ location }) => {
   return (
-    <nav>
-      <FilmMenu />
+    <nav className="navigation">
+      {location === '/' ? <AuthMenu /> : <AccountMenu />}
     </nav>
   );
 };

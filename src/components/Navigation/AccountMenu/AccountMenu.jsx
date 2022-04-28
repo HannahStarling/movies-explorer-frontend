@@ -1,21 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../utils/constants';
 import { List } from '../../List/List';
+import { Button } from '../../Button/Button';
+import { AccountLink } from '../AccountLink/AccountLink';
 import './AccountMenu.css';
 
-export const AccountMenu = () => {
+export const AccountMenu = ({ className = 'account-menu' }) => {
   return (
-    <List listStyle={'account-menu'}>
-      <li>
-        <Link to={'/sign-up'} className={'account-menu__link link'}>
-          Регистрация
-        </Link>
-      </li>
-      <li>
-        <Link to={'/sign-in'} className={'account-menu__btn'}>
-          Войти
-        </Link>
-      </li>
+    <List listStyle={className}>
+      {[...ROUTES.account].map((link) => {
+        return <AccountLink className={`${className}_link`} {...link} />;
+      })}
+      <Button className={`${className}__icon`} />
     </List>
   );
 };

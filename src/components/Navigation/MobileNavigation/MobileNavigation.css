@@ -1,0 +1,104 @@
+.dropdown-menu {
+  display: none;
+}
+
+@media all and (max-width: 768px) {
+  .dropdown-menu {
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    visibility: hidden;
+    z-index: 2022;
+    opacity: 0;
+    transition: all 0.8s ease;
+  }
+
+  .dropdown-menu_opened {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-navigation {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2022;
+    background-color: #fff;
+    transform: translateX(100vw);
+    transition: all 0.8s ease;
+    width: calc((520 / 768) * 100vw);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: calc((159 / 1024) * 100vh) calc((10 / 768) * 100vw)
+      calc((92 / 1024) * 100vh);
+    align-items: center;
+    gap: calc((621 / 1024) * 100vh); /* 444px */
+  }
+
+  .mobile-navigation_opened {
+    transform: translateX(0);
+  }
+
+  .menu-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .menu-mobile__link {
+    padding-bottom: 4px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .menu-mobile__link_active {
+    font-weight: 500;
+    border-bottom: 2px solid #000;
+  }
+
+  .account-menu-mobile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .account-menu-mobile__link {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.14;
+  }
+
+  .account-menu-mobile__icon {
+    border-radius: 6px;
+    padding: 15px;
+    background: #f9f9f9 url(../../../images/account-icon.svg) no-repeat center;
+  }
+
+  .mobile-navigation_btn {
+    z-index: 2023;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    padding: 11px;
+    color: #000;
+    background: url(../../../images/cross.svg) no-repeat center;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .mobile-navigation {
+    width: 100%;
+  }
+}

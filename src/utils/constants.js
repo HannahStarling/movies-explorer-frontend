@@ -37,4 +37,48 @@ const links = {
   ],
 };
 
-export { links };
+const ROUTES = {
+  navigation: [
+    {
+      id: 1,
+      title: 'Главная',
+      link: '/',
+      isButton: false,
+    },
+    {
+      id: 2,
+      title: 'Фильмы',
+      link: '/movies',
+      isButton: false,
+    },
+    {
+      id: 3,
+      title: 'Сохранённые фильмы',
+      link: '/saved-movies',
+      isButton: false,
+    },
+  ],
+  account: [
+    {
+      id: 4,
+      link: '/profile',
+      title: 'Аккаунт',
+      isButton: false,
+    },
+  ],
+  auth: [
+    {
+      id: 5,
+      link: '/signup',
+      title: 'Регистрация',
+      isButton: false,
+    },
+    {
+      id: 6,
+      link: '/signin',
+      title: 'Войти',
+      isButton: true,
+    },
+  ],
+};
+export { links, ROUTES };
