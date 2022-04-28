@@ -1,5 +1,5 @@
 import React from 'react';
-import { links } from '../../utils/constants';
+import { LINKS } from '../../utils/constants';
 import { Links } from '../Links/Links';
 import { Avatar } from '../Avatar/Avatar';
 import { ProfileInfo } from '../ProfileInfo/ProfileInfo';
@@ -10,7 +10,7 @@ export const Profile = () => {
     <figure className='profile'>
       <ProfileInfo styles={'profile__info'} />
       <Avatar styles={'profile__photo'} />
-      <Links listStyle={'profile__links'} socials={links.socials} />
+      <Links listStyle={'profile__links'} socials={LINKS.socials} />
     </figure>
   );
 };

@@ -1,4 +1,4 @@
-const links = {
+const LINKS = {
   socials: [
     {
       id: 'Facebook',
@@ -81,4 +81,20 @@ const ROUTES = {
     },
   ],
 };
-export { links, ROUTES };
+
+const movies = [
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
+];
+
+export { LINKS, ROUTES, movies };

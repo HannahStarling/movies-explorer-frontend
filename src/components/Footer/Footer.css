@@ -52,7 +52,7 @@
 
   .footer__links {
     align-items: center;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 12px;
     font-size: 12px;
     line-height: 15px;

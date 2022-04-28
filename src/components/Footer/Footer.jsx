@@ -1,5 +1,5 @@
 import React from 'react';
-import { links } from '../../utils/constants';
+import { LINKS } from '../../utils/constants';
 import { Copyright } from '../Copyright/Copyright';
 import { Links } from '../Links/Links';
 import { Paragraph } from '../Paragraph/Paragraph';
@@ -14,7 +14,7 @@ export const Footer = () => {
       />
       <nav className='footer__nav'>
         <Copyright />
-        <Links listStyle={'footer__links'} socials={links.socials} sites={links.sites} />
+        <Links listStyle={'footer__links'} socials={LINKS.socials} sites={LINKS.sites} />
       </nav>
     </footer>
   );
