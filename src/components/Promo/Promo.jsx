@@ -6,7 +6,10 @@ import './Promo.css';
 export const Promo = () => {
   return (
     <Section className='promo'>
-      <Title className={'promo__title'} title={'Учебный проект студента факультета Веб-разработки.'} />
+      <Title
+        className={'promo__title'}
+        title={'Учебный проект студента факультета Веб-разработки.'}
+      />
     </Section>
   );
 };

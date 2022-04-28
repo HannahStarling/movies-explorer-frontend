@@ -1,9 +1,9 @@
 import React from 'react';
-import './Profile.css';
 import { links } from '../../utils/constants';
 import { Links } from '../Links/Links';
 import { Avatar } from '../Avatar/Avatar';
 import { ProfileInfo } from '../ProfileInfo/ProfileInfo';
+import './Profile.css';
 
 export const Profile = () => {
   return (
