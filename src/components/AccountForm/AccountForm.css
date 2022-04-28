@@ -1,0 +1,47 @@
+.account__form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: calc((410 / 1280) * 100vw);
+}
+
+.account__input-label {
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 0 16px;
+}
+
+.account__input-label:last-of-type {
+  padding: 0;
+  border-bottom: none;
+  margin: 0 0 203px;
+}
+
+.account__input {
+  padding: 0;
+  border: none;
+  width: 100%;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.account__input:focus {
+  outline: 1px solid #ff4062;
+}
+
+.account__input::placeholder {
+  padding: 0;
+  font-weight: 500;
+  color: #000000;
+}
+
+.account__btn {
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.account__btn_type_logout {
+  font-weight: 500;
+  color: #ff4062;
+}
