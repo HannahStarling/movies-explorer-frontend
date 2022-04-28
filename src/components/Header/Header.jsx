@@ -1,14 +1,26 @@
 import React from 'react';
-import { AccountMenu } from '../Navigation/AccountMenu/AccountMenu';
+import { Menu } from '../Navigation/Menu/Menu';
+import { BurgerBtn } from '../BurgerBtn/BurgerBtn';
+import { MobileNavigation } from '../Navigation/MobileNavigation/MobileNavigation';
+import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
 import './Header.css';
 
-function Header({ type = 'white' }) {
+function Header({ type = 'white', location = '/' }) {
   return (
-    <header className={`header header_type_${type}`}>
-      <Logo />
-      <AccountMenu />
-    </header>
+    <>
+      <MobileNavigation location={location} />
+      <header className={`header header_type_${type}`}>
+        <Logo />
+        {location !== '/' && (
+          <>
+            <BurgerBtn />
+            <Menu />
+          </>
+        )}
+        <Navigation location={location} />
+      </header>
+    </>
   );
 }
 

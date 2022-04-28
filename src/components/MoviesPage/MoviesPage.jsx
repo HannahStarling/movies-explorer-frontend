@@ -8,7 +8,7 @@ import { Pagination } from '../Pagination/Pagination';
 export const MoviesPage = () => {
   return (
     <>
-      <Header />
+      <Header location='/movies' />
       <main>
         <MovieForm />
         <Movies />
