@@ -8,7 +8,10 @@ import './Footer.css';
 export const Footer = () => {
   return (
     <footer className={'footer'}>
-      <Paragraph className={'footer__description'} text='Учебный проект Яндекс.Практикум х&nbsp;BeatFilm.' />
+      <Paragraph
+        className={'footer__description'}
+        text='Учебный проект Яндекс.Практикум х&nbsp;BeatFilm.'
+      />
       <nav className='footer__nav'>
         <Copyright />
         <Links listStyle={'footer__links'} socials={links.socials} sites={links.sites} />

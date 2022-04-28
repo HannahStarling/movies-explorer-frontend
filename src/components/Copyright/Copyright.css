@@ -1,2 +1,7 @@
-.copyright {
+@media all and (max-width: 719px) {
+  .copyright {
+    font-size: 12px;
+    line-height: 15px;
+    color: #a0a0a0;
+  }
 }
