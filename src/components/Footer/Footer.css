@@ -31,6 +31,7 @@
 @media all and (max-width: 1023px) {
   .footer {
     width: calc((708 / 768) * 100vw);
+    padding: 40px 0 0;
   }
 }
 
@@ -51,6 +52,9 @@
 
   .footer__links {
     align-items: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 12px;
+    font-size: 12px;
+    line-height: 15px;
   }
 }

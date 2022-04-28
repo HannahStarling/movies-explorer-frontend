@@ -12,3 +12,31 @@
 .profile__text {
   line-height: 1.57;
 }
+
+@media all and (max-width: 1023px) {
+  .profile {
+    gap: 87px 49px;
+  }
+
+  .profile__description {
+    margin: 0 0 16px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .profile__title {
+    margin: 0;
+  }
+
+  .profile__description {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .profile__text {
+    line-height: 1.45;
+  }
+}

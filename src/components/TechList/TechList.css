@@ -3,3 +3,16 @@
   align-self: center;
   gap: 10px;
 }
+
+@media all and (max-width: 1023px) {
+  .tech__list {
+    line-height: 15px;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .tech__list {
+    padding: 0 51px;
+    flex-wrap: wrap;
+  }
+}

@@ -7,3 +7,10 @@
   line-height: 27px;
   letter-spacing: -0.04em;
 }
+
+@media all and (max-width: 719px) {
+  .title-lined {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

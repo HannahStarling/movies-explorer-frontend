@@ -20,3 +20,22 @@
 .auth-menu__btn:hover {
   opacity: 0.8;
 }
+
+@media all and (max-width: 719px) {
+  .auth-menu {
+    gap: 14px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .auth-menu__link {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .auth-menu__link_btn {
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+}

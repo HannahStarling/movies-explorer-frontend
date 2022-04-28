@@ -13,3 +13,31 @@
   line-height: 1.3;
   letter-spacing: -0.04em;
 }
+
+@media all and (max-width: 1023px) {
+  .promo {
+    padding: 300px 44px 0;
+    min-height: 844px;
+    background-position: center bottom 70px;
+  }
+  .promo__title {
+    max-width: calc((300 / 320) * 100vw);
+    font-size: 40px;
+    line-height: 1.3;
+    text-align: center;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .promo {
+    padding: 183px 10px 0;
+    min-height: 630px;
+    background-position: bottom 40px left -193px;
+  }
+
+  .promo__title {
+    max-width: calc((300 / 320) * 100vw);
+    font-size: 31px;
+    line-height: 1.26;
+  }
+}

@@ -3,3 +3,18 @@
   margin: 70px 0 110px;
   gap: 40px;
 }
+
+@media all and (max-width: 1023px) {
+  .articles {
+    margin: 70px 0 93px;
+    gap: 30px;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .articles {
+    flex-direction: column;
+    margin: 60px 0;
+    gap: 56px;
+  }
+}

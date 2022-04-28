@@ -32,3 +32,29 @@
   line-height: 1.21;
   color: #a0a0a0;
 }
+
+@media all and (max-width: 1023px) {
+  .bar__week {
+    padding: 9px 10px;
+  }
+
+  .bar__code {
+    padding: 14px 0 0;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .bar {
+    grid-template-columns: 1fr 2fr;
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .bar__week {
+    padding: 11px 10px;
+  }
+
+  .bar__code {
+    padding: 10px 0 0;
+  }
+}
