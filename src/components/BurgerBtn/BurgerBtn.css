@@ -54,3 +54,9 @@
     transform: rotate(45deg) translate(0, 50%);
   }
 }
+
+@media all and (max-width: 600px) {
+  .dropdown-menu-btn {
+    padding: calc(((23 / 2) / 780) * 100vh) calc((14 / 320) * 100vw);
+  }
+}
