@@ -6,6 +6,7 @@ import { About } from '../About/About';
 import './Main.css';
 import Header from '../Header/Header';
 import { Footer } from '../Footer/Footer';
+import { Modal } from '../Modal/Modal';
 
 export const Main = ({ colored }) => {
   return (
@@ -18,6 +19,7 @@ export const Main = ({ colored }) => {
         <About />
       </main>
       <Footer />
+      <Modal />
     </>
   );
 };

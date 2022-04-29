@@ -1,0 +1,59 @@
+.modal {
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: -1;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  visibility: hidden;
+  z-index: 2022;
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.modal_opened {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 2022;
+  background-color: #fff;
+  transform: translateX(100vw);
+  transition: all 0.8s ease;
+  width: calc((520 / 768) * 100vw);
+  display: flex;
+  flex-direction: column;
+  padding: calc((159 / 1024) * 100vh) calc((40 / 768) * 100vw) calc((92 / 1024) * 100vh);
+  gap: 20px;
+}
+
+.modal__container_opened {
+  transform: translateX(0);
+}
+.modal__title {
+  color: #ff4062;
+}
+
+.modal__text {
+  font-size: 40px;
+}
+
+.modal__btn {
+  z-index: 2023;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  padding: 11px;
+  color: #000;
+  background: url(../../images/cross.svg) no-repeat center;
+}
