@@ -30,7 +30,7 @@
 }
 
 @media all and (max-width: 719px) {
-  .header {
+  .header_type_small {
     justify-content: center;
     padding: calc((56 / 780) * 100vh) 0 20px;
   }

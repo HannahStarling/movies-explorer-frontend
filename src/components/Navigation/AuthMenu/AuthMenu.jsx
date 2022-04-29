@@ -8,7 +8,7 @@ export const AuthMenu = () => {
   return (
     <List listStyle={'auth-menu'}>
       {[...ROUTES.auth].map((link) => {
-        return <AccountLink className={'auth-menu__link'} {...link} />;
+        return <AccountLink key={link.id} className={'auth-menu__link'} {...link} />;
       })}
     </List>
   );

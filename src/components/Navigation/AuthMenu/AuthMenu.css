@@ -13,7 +13,7 @@
 .auth-menu__link_btn {
   background: #000;
   border-radius: 3px;
-  color: #fff;
+  color: #fff !important;
   padding: 8px 20px;
 }
 
