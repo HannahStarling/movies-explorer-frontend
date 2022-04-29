@@ -16,7 +16,7 @@ export const Login = () => {
             btnText={'Войти'}
             btnType={'login'}
             question={'Ещё не зарегистрированы?'}
-            link={'sign-up'}
+            link={'/signup'}
             linkText={'Регистрация'}
           />
         </Section>

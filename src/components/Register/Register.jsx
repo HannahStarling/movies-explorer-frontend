@@ -13,7 +13,7 @@ export const Register = () => {
           <AuthForm
             btnText={'Зарегистрироваться'}
             question={'Уже зарегистрированы?'}
-            link={'sign-in'}
+            link={'/signin'}
             linkText={'Войти'}
           />
         </Section>
