@@ -1,0 +1,61 @@
+.input {
+  padding: 0 0 10px;
+  border: none;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.input:focus,
+.input:active {
+  font-weight: 500;
+  background: transparent;
+  outline: none;
+  border-bottom-color: #000000;
+}
+
+/* Убирает браузерный цвет при автозаполнении */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.linput:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.input-error {
+  display: block;
+  padding: 6px 0 0;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ff4062;
+}
+
+.input_type_error {
+  color: #ff4062;
+  border-bottom-color: #ff4062;
+}
+
+.input_type_error:focus,
+.input_type_error:active {
+  border-bottom-color: #ff4062;
+}
+
+.input-label {
+  width: 100%;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #a0a0a0;
+}
+
+.input-label:last-of-type {
+  padding: 0;
+  border-bottom: none;
+}
+
+.input::placeholder {
+  padding: 0;
+  font-weight: 500;
+  color: #000000;
+}
