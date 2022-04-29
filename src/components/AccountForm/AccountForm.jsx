@@ -7,8 +7,8 @@ import './AccountForm.css';
 export const AccountForm = () => {
   return (
     <Form name={'account'} className={'account__form'}>
-      <Input type='text' name={'name'} placeholder={'Имя'} className={'account__input'} />
-      <Input type='email' name={'email'} placeholder={'E-mail'} className={'account__input'} />
+      <Input type='text' name={'name'} placeholder={'Имя'} className={'account'} />
+      <Input type='email' name={'email'} placeholder={'E-mail'} className={'account'} />
       <Button type={'submit'} className='account__btn' text={'Редактировать'} />
       <Button
         type={'button'}
