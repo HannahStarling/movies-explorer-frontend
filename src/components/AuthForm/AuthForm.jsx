@@ -14,6 +14,7 @@ export const AuthForm = ({
   question,
   linkText,
   link,
+  btnType,
 }) => {
   return (
     <>
@@ -37,7 +38,11 @@ export const AuthForm = ({
           placeholder={'Пароль'}
           className={'auth'}
         />
-        <Button text={btnText} type={'submit'} className={'auth__btn'} />
+        <Button
+          text={btnText}
+          type={'submit'}
+          className={`auth__btn ${btnType ? `auth__btn_type_${btnType}` : ''}`.trim()}
+        />
       </Form>
       <p className={'auth__question'}>
         {question}&nbsp;
