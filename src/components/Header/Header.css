@@ -22,10 +22,16 @@
   .header {
     padding: 0px 30px;
   }
+
+  .header_type_small {
+    max-width: calc((396 / 768) * 100vw);
+    padding: calc((232 / 1024) * 100vh) 0 20px;
+  }
 }
 
 @media all and (max-width: 719px) {
   .header {
-    padding: 0px 14px;
+    justify-content: center;
+    padding: calc((56 / 780) * 100vh) 0 20px;
   }
 }

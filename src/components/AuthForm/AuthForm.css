@@ -47,3 +47,29 @@
   font-size: 14px;
   line-height: 17px;
 }
+
+@media all and (max-width: 1023px) {
+  .auth__title {
+    min-width: calc((396 / 768) * 100vw);
+  }
+
+  .auth__form {
+    min-width: calc((396 / 768) * 100vw);
+  }
+}
+
+@media all and (max-width: 719px) {
+  .auth__title {
+    margin: 0 auto calc((80 / 780) * 100vh);
+  }
+
+  .auth__form {
+    min-width: 100%;
+  }
+
+  .auth__btn {
+    font-size: 12px;
+    line-height: 15px;
+    margin: calc((203 / 780) * 100vh) 0 0;
+  }
+}
