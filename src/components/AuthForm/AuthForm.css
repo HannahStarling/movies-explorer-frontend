@@ -61,6 +61,7 @@
 @media all and (max-width: 719px) {
   .auth__title {
     margin: 0 auto calc((80 / 780) * 100vh);
+    text-align: center;
   }
 
   .auth__form {

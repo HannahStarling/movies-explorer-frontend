@@ -6,8 +6,7 @@ import { Menu } from '../Menu/Menu';
 import { MenuLink } from '../MenuLink/MenuLink';
 import './MobileNavigation.css';
 
-export const MobileNavigation = () => {
-  const isOpen = false;
+export const MobileNavigation = ({ isOpen = false }) => {
   return (
     <aside className={`dropdown-menu ${isOpen ? 'dropdown-menu_opened' : ''}`.trim()}>
       <Button className='mobile-navigation_btn' />
