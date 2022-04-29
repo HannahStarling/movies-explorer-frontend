@@ -18,7 +18,7 @@ export const MobileNavigation = () => {
               return link === '/';
             })
             .map((link) => {
-              return <MenuLink className={`menu-mobile__link`} {...link} />;
+              return <MenuLink key={link.id} className={`menu-mobile__link`} {...link} />;
             })}
         </Menu>
         <AccountMenu className={'account-menu-mobile'} />

@@ -13,7 +13,7 @@ export const Menu = ({ children, className = 'menu' }) => {
           return link !== '/';
         })
         .map((link) => {
-          return <MenuLink className={`${className}__link`} {...link} />;
+          return <MenuLink key={link.id} className={`${className}__link`} {...link} />;
         })}
     </List>
   );

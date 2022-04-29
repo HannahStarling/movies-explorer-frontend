@@ -9,7 +9,7 @@ export const AccountMenu = ({ className = 'account-menu' }) => {
   return (
     <List listStyle={className}>
       {[...ROUTES.account].map((link) => {
-        return <AccountLink className={`${className}_link`} {...link} />;
+        return <AccountLink key={link.id} className={`${className}_link`} {...link} />;
       })}
       <Button className={`${className}__icon`} />
     </List>

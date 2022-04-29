@@ -7,21 +7,20 @@ import { Logo } from '../Logo/Logo';
 import './Header.css';
 
 function Header({ className = '', type = 'white', location = '/' }) {
+  const hasMenu = location !== '/' && location !== '/signup' && location !== '/signin';
+  const isLogin = location !== '/signup' && location !== '/signin';
   return (
     <>
       <MobileNavigation location={location} />
       <header className={`header header_type_${type}`}>
         <Logo />
-        {location !== '/' &&
-          location !== '/signup' &&
-          location !==
-            '/signin'(
-              <>
-                <BurgerBtn />
-                <Menu />
-              </>,
-            )}
-        {location !== '/signup' && location !== '/signin' && <Navigation location={location} />}
+        {hasMenu && (
+          <>
+            <BurgerBtn />
+            <Menu />
+          </>
+        )}
+        {isLogin && <Navigation location={location} />}
       </header>
     </>
   );
