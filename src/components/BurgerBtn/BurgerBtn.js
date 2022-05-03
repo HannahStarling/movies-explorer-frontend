@@ -2,12 +2,11 @@ import React from 'react';
 import { Button } from '../Button/Button';
 import './BurgerBtn.css';
 
-export const BurgerBtn = ({ isActive }) => {
+export const BurgerBtn = ({ isActive, onDropdown }) => {
   return (
     <Button
-      className={`dropdown-menu-btn ${
-        isActive ? 'dropdown-menu-btn_active' : ''
-      }`.trim()}
+      onClick={onDropdown}
+      className={`dropdown-menu-btn ${isActive ? 'dropdown-menu-btn_active' : ''}`.trim()}
     >
       <span
         className={`dropdown-menu-btn__element ${

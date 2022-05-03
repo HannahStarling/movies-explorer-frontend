@@ -39,8 +39,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: calc((159 / 1024) * 100vh) calc((10 / 768) * 100vw)
-      calc((92 / 1024) * 100vh);
+    padding: calc((159 / 1024) * 100vh) calc((10 / 768) * 100vw) calc((92 / 1024) * 100vh);
     align-items: center;
     gap: calc((621 / 1024) * 100vh); /* 444px */
   }
@@ -93,7 +92,7 @@
     right: 25px;
     padding: 11px;
     color: #000;
-    background: url(../../../images/cross.svg) no-repeat center;
+    background: url(../../../images/cross.svg) no-repeat center / contain;
   }
 }
 

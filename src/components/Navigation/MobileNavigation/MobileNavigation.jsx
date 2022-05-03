@@ -6,10 +6,10 @@ import { Menu } from '../Menu/Menu';
 import { MenuLink } from '../MenuLink/MenuLink';
 import './MobileNavigation.css';
 
-export const MobileNavigation = ({ isOpen = false }) => {
+export const MobileNavigation = ({ isOpen, onClose }) => {
   return (
     <aside className={`dropdown-menu ${isOpen ? 'dropdown-menu_opened' : ''}`.trim()}>
-      <Button className='mobile-navigation_btn' />
+      <Button className='mobile-navigation_btn' onClick={onClose} />
       <nav className={`mobile-navigation ${isOpen ? 'mobile-navigation_opened' : ''}`.trim()}>
         <Menu className='menu-mobile'>
           {[...ROUTES.navigation]
