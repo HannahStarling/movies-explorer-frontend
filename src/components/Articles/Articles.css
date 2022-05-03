@@ -15,6 +15,11 @@
   .articles {
     flex-direction: column;
     margin: 60px 0;
+  }
+}
+
+@media all and (max-width: 440px) {
+  .articles {
     gap: 56px;
   }
 }
