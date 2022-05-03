@@ -16,7 +16,7 @@ export const Movies = ({ location = '/movies' }) => {
                 return <Movie key={movieId} {...movie} />;
               })
             : [...movies].slice(1, 4).map((movie, movieId) => {
-                return <Movie key={movieId} {...movie} />;
+                return <Movie location='/saved-movies' key={movieId} {...movie} />;
               })}
         </List>
       ) : (

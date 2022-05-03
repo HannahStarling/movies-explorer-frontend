@@ -41,12 +41,21 @@
 .movie__btn {
   box-sizing: border-box;
   grid-area: btn;
+  height: 15px;
   padding: 15px;
-  background: url(../../images/favorite__btn.svg) no-repeat center / contain;
+  border-radius: 50%;
 }
 
-.movie__btn_active {
-  background: url(../../images/favorite__btn_active.svg) no-repeat center / contain;
+.movie__btn-fav {
+  background: #f9f9f9 url(../../images/favorite__btn.svg) no-repeat center;
+}
+
+.movie__btn-fav_active {
+  background: #000 url(../../images/favorite__btn_active.svg) no-repeat center;
+}
+
+.movie__btn-delete {
+  background: #f9f9f9 url(../../images/cross.svg) no-repeat center;
 }
 
 .movie__image {
