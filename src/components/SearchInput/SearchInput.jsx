@@ -12,6 +12,7 @@ export const SearchInput = ({ placeholder = 'Фильм' }) => {
         placeholder={placeholder}
         name={'movie-search'}
         id={'movie-search'}
+        required
       />
       <Button className={'movie-search__btn'} />
     </fieldset>
