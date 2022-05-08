@@ -9,31 +9,35 @@ import { MoviesPage } from '../MoviesPage/MoviesPage';
 import { NotFound } from '../NotFound/NotFound';
 import { Register } from '../Register/Register';
 import { SavedMovies } from '../SavedMovies/SavedMovies';
+import { CurrentUserContext, Provider } from '../../context/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState({});
 
   return (
     <>
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/signup' element={<Register />} />
-        <Route path='/signin' element={<Login />} />
-        <Route
-          path='/movies'
-          element={<ProtectedRoute loggedIn={loggedIn} component={<MoviesPage />} />}
-        />
-        <Route
-          path='/saved-movies'
-          element={<ProtectedRoute loggedIn={loggedIn} component={<SavedMovies />} />}
-        />
-        <Route
-          path='/profile'
-          element={<ProtectedRoute loggedIn={loggedIn} component={<Account />} />}
-        />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-      <Modal />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/signup' element={<Register />} />
+          <Route path='/signin' element={<Login />} />
+          <Route
+            path='/movies'
+            element={<ProtectedRoute loggedIn={loggedIn} component={<MoviesPage />} />}
+          />
+          <Route
+            path='/saved-movies'
+            element={<ProtectedRoute loggedIn={loggedIn} component={<SavedMovies />} />}
+          />
+          <Route
+            path='/profile'
+            element={<ProtectedRoute loggedIn={loggedIn} component={<Account />} />}
+          />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <Modal />
+      </CurrentUserContext.Provider>
     </>
   );
 }
