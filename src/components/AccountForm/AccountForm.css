@@ -1,0 +1,58 @@
+.account__form {
+  display: flex;
+  flex-direction: column;
+  gap: calc((11 / 700) * 100vh);
+  width: calc((410 / 1280) * 100vw);
+}
+
+.account__input {
+  padding: 0 0 16px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.account__input-label:last-of-type {
+  margin: 0 0 calc((189 / 700) * 100vh);
+}
+
+.account__input-label:last-of-type > .account__input {
+  border-bottom: none;
+}
+
+.account__input::placeholder {
+  padding: 0;
+  font-weight: 500;
+  color: #000000;
+}
+
+.account__btn {
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.account__btn_type_logout {
+  font-weight: 500;
+  color: #ff4062;
+}
+
+@media all and (max-width: 1023px) {
+  .account__form {
+    width: calc((420 / 768) * 100vw);
+  }
+}
+
+@media all and (max-width: 719px) {
+  .account__form {
+    width: calc((260 / 320) * 100vw);
+  }
+
+  .account__input-label:last-of-type {
+    margin: 0 0 calc((347 / 780) * 100vh);
+  }
+
+  .account__btn {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

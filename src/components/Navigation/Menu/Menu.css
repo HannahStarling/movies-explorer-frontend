@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  gap: 16px;
+}
+
+.menu__link {
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.menu__link_active {
+  font-weight: 500;
+}
+
+@media all and (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+}

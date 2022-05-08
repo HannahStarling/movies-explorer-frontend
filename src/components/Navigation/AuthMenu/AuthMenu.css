@@ -1,0 +1,41 @@
+.auth-menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.auth-menu__link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.auth-menu__link_btn {
+  background: #000;
+  border-radius: 3px;
+  color: #fff !important;
+  padding: 8px 20px;
+}
+
+.auth-menu__btn:hover {
+  opacity: 0.8;
+}
+
+@media all and (max-width: 719px) {
+  .auth-menu {
+    gap: 14px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .auth-menu__link {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .auth-menu__link_btn {
+    padding: 5px 12px;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+}

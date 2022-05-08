@@ -1,0 +1,43 @@
+.promo {
+  box-sizing: border-box;
+  min-height: 560px;
+  /* transform: translate(0, -1px); */ /* полоска между header ??? */
+  background: #f3c1f8 bottom 60px right 70px no-repeat url(../../images/hero-logo.svg);
+  padding: 50px 70px 0;
+}
+
+.promo__title {
+  max-width: 48.90625%;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+}
+
+@media all and (max-width: 1023px) {
+  .promo {
+    padding: 300px 44px 0;
+    min-height: 844px;
+    background-position: center bottom 70px;
+  }
+  .promo__title {
+    max-width: calc((300 / 320) * 100vw);
+    font-size: 40px;
+    line-height: 1.3;
+    text-align: center;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .promo {
+    padding: 183px 10px 0;
+    min-height: 630px;
+    background-position: bottom 40px left -193px;
+  }
+
+  .promo__title {
+    max-width: calc((300 / 320) * 100vw);
+    font-size: 31px;
+    line-height: 1.26;
+  }
+}

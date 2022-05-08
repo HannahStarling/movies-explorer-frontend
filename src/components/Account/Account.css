@@ -1,0 +1,34 @@
+.account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: calc((74 / 1024) * 100vh) 0 calc((70 / 1024) * 100vh);
+}
+
+.account__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0 0 calc((123 / 1024) * 100vh);
+}
+
+@media all and (max-width: 1023px) {
+  .account {
+    padding: calc((236 / 1024) * 100vh) 0 calc((222 / 1024) * 100vh);
+  }
+
+  .account__title {
+    margin: 0 0 calc((96 / 1024) * 100vh);
+  }
+}
+
+@media all and (max-width: 719px) {
+  .account {
+    padding: calc((70 / 780) * 100vh) 0 calc((222 / 780) * 100vh);
+  }
+
+  .account__title {
+    margin: 0 0 calc((80 / 780) * 100vh);
+  }
+}

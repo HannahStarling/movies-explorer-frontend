@@ -1,0 +1,9 @@
+.auth__btn_type_login {
+  margin: 184px 0 0;
+}
+
+@media all and (max-width: 719px) {
+  .auth__btn_type_login {
+    margin: calc((272 / 780) * 100vh) 0 0;
+  }
+}

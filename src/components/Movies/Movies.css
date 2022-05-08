@@ -1,0 +1,25 @@
+.movies {
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.movies__list {
+  box-sizing: border-box;
+  padding: calc((70 / 1280) * 100vw);
+  display: grid;
+  gap: 30px 24px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media all and (max-width: 1023px) {
+  .movies__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .movies__list {
+    grid-template-columns: 1fr;
+  }
+}

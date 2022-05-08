@@ -1,0 +1,13 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0 70px;
+}
+
+@media all and (max-width: 719px) {
+  .auth {
+    padding: 30px;
+  }
+}

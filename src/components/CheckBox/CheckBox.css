@@ -1,0 +1,63 @@
+.movie-filter {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.movie-filter__checkbox {
+  width: 36px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  background: #2be080;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.movie-filter__label {
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.movie-filter__checkbox::after {
+  content: '';
+  top: 6px;
+  right: 6px;
+  position: absolute;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  transition: 0.5s;
+}
+
+.movie-filter__input {
+  opacity: 0;
+  position: absolute;
+}
+
+.movie-filter__input:focus + .movie-filter__checkbox {
+  outline: 3px solid #ff4062;
+}
+
+.movie-filter__input:checked + .movie-filter__checkbox {
+  background: #ebebeb;
+}
+
+.movie-filter__input:checked + .movie-filter__checkbox::after {
+  background: #f5f5f5;
+  transform: translateX(-16px);
+}
+
+@media all and (max-width: 719px) {
+  .movie-filter__label {
+    font-size: 11px;
+    line-height: 1.64;
+  }
+}

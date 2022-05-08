@@ -1,0 +1,35 @@
+@import './vendor/normalize.css';
+@import './vendor/fonts/fonts.css';
+
+:root {
+  color: #000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (max-width: 1023px) {
+  :root {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+@media all and (max-width: 719px) {
+  :root {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+}

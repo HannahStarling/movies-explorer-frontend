@@ -1,0 +1,32 @@
+.article {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.article__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+
+@media all and (max-width: 1023px) {
+  .article {
+    max-width: 319px;
+    gap: 22px;
+  }
+}
+
+@media all and (max-width: 719px) {
+  .article {
+    gap: 16px;
+  }
+
+  .article__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

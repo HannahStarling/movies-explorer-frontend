@@ -1,0 +1,3 @@
+.movie-form {
+  padding: calc((80 / 1280) * 100vw) calc((70 / 1280) * 100vw) calc((14 / 1280) * 100vw);
+}
