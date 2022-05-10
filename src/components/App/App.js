@@ -9,7 +9,7 @@ import { MoviesPage } from '../MoviesPage/MoviesPage';
 import { NotFound } from '../NotFound/NotFound';
 import { Register } from '../Register/Register';
 import { SavedMovies } from '../SavedMovies/SavedMovies';
-import { CurrentUserContext, Provider } from '../../context/CurrentUserContext';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
