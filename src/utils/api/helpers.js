@@ -12,9 +12,9 @@ export const prepareData = (res) => {
       });
 };
 
-export const request = (BASE_URL, { url = '', method = 'POST', body }) => {
+export const request = (BASE_URL, { url = '', method = 'POST', body }, credentials = true) => {
   const config = {
-    credentials: 'include',
+    ...(!!credentials && { credentials: 'include' }),
     method,
     headers: {
       Accept: 'application/json',

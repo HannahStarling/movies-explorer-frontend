@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { List } from '../List/List';
 import { Movie } from '../Movie/Movie';
-import { movies } from '../../utils/constants';
 import { InfoBanner } from '../InfoBanner/InfoBanner';
 import { Section } from '../Section/Section';
 import './Movies.css';
 
-export const Movies = ({ location = '/movies' }) => {
+export const Movies = ({ location = '/movies', movies }) => {
   return (
     <Section className='movies'>
       {movies.length ? (
         <List listStyle='movies__list'>
+          {/* all */}
           {location === '/movies'
             ? movies.map((movie, movieId) => {
+                console.log(movie);
                 return <Movie key={movieId} {...movie} />;
               })
             : [...movies].slice(1, 4).map((movie, movieId) => {

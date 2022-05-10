@@ -1,4 +1,4 @@
-import request from './helpers';
+import { request } from './helpers';
 import { MOVIES_API_URL } from './constants';
 
-export const getMoviesData = () => request(MOVIES_API_URL, { method: 'GET' });
+export const getMoviesData = () => request(MOVIES_API_URL, { method: 'GET' }, false);
