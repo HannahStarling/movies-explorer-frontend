@@ -3,7 +3,6 @@ import Header from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { MovieForm } from '../MovieForm/MovieForm';
 import { Movies } from '../Movies/Movies';
-import { Pagination } from '../Pagination/Pagination';
 import { useMovies } from '../../hooks/useMovies';
 import { getMoviesData } from '../../utils/api/MoviesApi';
 
@@ -15,8 +14,14 @@ export const MoviesPage = ({ isLoadingData, onSubmit, ...props }) => {
 
   useEffect(() => {
     async function fetchData() {
-      const movies = await getMoviesData();
-      setMovies(movies);
+      try {
+        const movies = await getMoviesData();
+        setMovies(movies);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        //loading - false
+      }
     }
     fetchData();
   }, []);
@@ -30,8 +35,7 @@ export const MoviesPage = ({ isLoadingData, onSubmit, ...props }) => {
       <Header location='/movies' />
       <main>
         <MovieForm name={'movie'} onSubmit={handleSubmit} />
-        <Movies movies={searchedMovies} />
-        {searchedMovies.length >= 3 && <Pagination />}
+        <Movies movies={searchedMovies} button={'fav'} />
       </main>
       <Footer />
     </>

@@ -1,4 +1,4 @@
-import request from './helpers';
+import { request } from './helpers';
 import { MAIN_API_URL, ENDPOINTS } from './constants';
 
 const { signin, signout, signup, users, movies } = ENDPOINTS;
