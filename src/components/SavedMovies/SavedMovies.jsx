@@ -1,42 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useMovies } from '../../hooks/useMovies';
-import { getMovies } from '../../utils/api/MainApi';
+import React from 'react';
+import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
-import Header from '../Header/Header';
 import { MovieForm } from '../MovieForm/MovieForm';
 import { Movies } from '../Movies/Movies';
 
-export const SavedMovies = ({ loggedIn }) => {
-  // const [movies, setMovies] = useState([]);
-  // const [query, setQuery] = useState('');
-
-  // const searchedMovies = useMovies(movies, query);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     // сохраненные фильмы из базы
-  //     try {
-  //       const movies = await getMovies();
-  //       setMovies(movies);
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       //loading - false
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
-
-  // const handleSubmit = (searchedMovies) => {
-  //   setQuery(searchedMovies['movie-search']);
-  // };
-
+export const SavedMovies = ({ loggedIn, onDeleteMovie, onSearch, movies }) => {
   return (
     <>
       <Header loggedIn={loggedIn} />
       <main>
-        <MovieForm name={'movie'} />
-        {/*         <Movies movies={searchedMovies} button={'delete'} /> */}
+        <MovieForm onSubmit={onSearch} name={'movie'} />
+        <Movies onDeleteMovie={onDeleteMovie} movies={movies} button={'delete'} />
       </main>
       <Footer />
     </>
