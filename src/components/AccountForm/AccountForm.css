@@ -21,9 +21,28 @@
 }
 
 .account__input::placeholder {
+  text-align: right;
   padding: 0;
   font-weight: 500;
   color: #000000;
+}
+
+.account__non-input {
+  width: 100%;
+  font-size: 11px;
+  line-height: 14px;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 6px 0 16px;
+  text-align: left;
+}
+
+.account__non-input:first-of-type {
+  padding: 0 0 16px;
+}
+
+.account__non-input:last-of-type {
+  border-bottom: none;
+  margin: 0 0 calc((189 / 700) * 100vh);
 }
 
 .account__btn {
