@@ -1,6 +1,15 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { MAIN_ROUTE } from '../../utils/constants';
 
 export const ProtectedRoute = ({ loggedIn, component }) => {
-  return <>{loggedIn ? component : <Navigate to='/' replace />}</>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loggedIn) {
+      navigate(MAIN_ROUTE);
+    }
+  }, [loggedIn, navigate]);
+
+  return <>{loggedIn && component}</>;
 };
