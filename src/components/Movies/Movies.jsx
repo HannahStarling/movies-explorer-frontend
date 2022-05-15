@@ -6,13 +6,22 @@ import { Section } from '../Section/Section';
 import './Movies.css';
 import { Pagination } from '../Pagination/Pagination';
 
-export const Movies = ({ button, movies }) => {
+export const Movies = ({ savedMovies, onSaveMovie, onDeleteMovie, button, movies }) => {
   return (
     <Section className='movies'>
       {movies.length ? (
         <List listStyle='movies__list'>
           {movies.map((movie) => {
-            return <Movie key={movie.id || movie._id} button={button} {...movie} />;
+            return (
+              <Movie
+                key={movie.id || movie._id}
+                savedMovies={savedMovies}
+                onSaveMovie={onSaveMovie}
+                onDeleteMovie={onDeleteMovie}
+                button={button}
+                {...movie}
+              />
+            );
           })}
         </List>
       ) : (

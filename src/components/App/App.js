@@ -10,19 +10,66 @@ import { NotFound } from '../NotFound/NotFound';
 import { Register } from '../Register/Register';
 import { SavedMovies } from '../SavedMovies/SavedMovies';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { authorize, getUser, register, logOut, updateUser } from '../../utils/api/MainApi';
+import {
+  authorize,
+  getUser,
+  register,
+  logOut,
+  updateUser,
+  getMovies,
+  saveMovie,
+  deleteMovie,
+} from '../../utils/api/MainApi';
+import { useMovies } from '../../hooks/useMovies';
+import { getMoviesData } from '../../utils/api/MoviesApi';
+import { MAIN_ROUTE, MOVIES_ROUTE } from '../../utils/constants';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
   const [currentUser, setCurrentUser] = useState({});
 
-  const navigate = useNavigate();
+  const [movies, setMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
 
-  const showError = (error) => {
-    console.log(error);
-    // setIsApiError(true);
-    // setErrorData(error);
-    // setIsErrorModalOpen(true);
+  const [queryMovies, setQueryMovies] = useState('');
+  const [querySavedMovies, setQuerySavedMovies] = useState('');
+  const [isSearched, setIsSearched] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [error, setError] = useState({ hasError: false, name: '', status: '', error: '' });
+
+  const navigate = useNavigate();
+  // localStorage.clear();
+
+  const searchedMovies = useMovies(movies, queryMovies, isChecked);
+  const searchedSavedMovies = useMovies(savedMovies, querySavedMovies, isChecked);
+
+  const searchMovies = (searchedMovies) => {
+    setQueryMovies(searchedMovies['movie-search']);
+    setIsChecked(!!searchedMovies['movie-filter']);
+    localStorage.setItem('movies', JSON.stringify(movies));
+    localStorage.setItem('moviesQuery', JSON.stringify(queryMovies));
+    localStorage.setItem('moviesIsChecked', JSON.stringify(isChecked));
+    setIsSearched(true);
+  };
+
+  const searchSavedMovies = (searchedMovies) => {
+    setQuerySavedMovies(searchedMovies['movie-search']);
+    setIsChecked(!!searchedMovies['movie-filter']);
+    localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+    localStorage.setItem('savedMoviesQuery', JSON.stringify(querySavedMovies));
+    localStorage.setItem('savedMoviesIsChecked', JSON.stringify(isChecked));
+  };
+
+  const showError = ({ name, status, ...error }) => {
+    setError((prev) => ({ ...prev, hasError: true, name, status, ...error }));
+  };
+
+  const handleCloseModal = () => {
+    setError((prev) => ({ ...prev, hasError: false, name: '', status: '', error: '' }));
   };
 
   async function handleRegistration({ name, password, email }) {
@@ -37,60 +84,102 @@ function App() {
   async function handleLogin({ password, email }) {
     try {
       await authorize(password, email);
-      // Promise.all([getUserProfile(res.token), getLikedMovies(), getMovies()]).then(
-      //   ([userData, likedMoviesData, allMoviesData]) => {
-      //     setCurrentUser(userData);
-      //     setLikedMovies(likedMoviesData);
-      //     setFiltredLikedMovies(likedMoviesData);
-      //     setAllMovies(allMoviesData);
-      //     setIsUserLoggedIn(true);
-      //     history.push('/movies');
-      //   }
-      // );
       setLoggedIn(true);
-      navigate('/movies');
-      //заполнить информацией профиль и сохраненные карточки
+      navigate(MOVIES_ROUTE);
     } catch (error) {
+      console.log(error);
       showError(error);
     }
-    //if (!email || !password) return;
   }
 
   async function onLogOut() {
     try {
       await logOut();
+    } catch (_) {
       setLoggedIn(false);
-      //localStorage.removeItem();
-    } catch (error) {
-      showError(error);
+      navigate(MAIN_ROUTE);
+      setIsSearched(false);
+      localStorage.clear();
     }
   }
 
   useEffect(() => {
     async function tokenCheck() {
       try {
+        setIsLoading(true);
         const user = await getUser();
+        const [movies, savedMovies] = await Promise.all([getMoviesData(), getMovies()]);
+        setSavedMovies(savedMovies);
+        setMovies(movies);
         setCurrentUser(user);
         setLoggedIn(true);
+      } catch (_) {
+        setTimeout(() => {
+          showError({
+            name: 'Чтобы получить доступ к возможностям сайта необходимо пройти авторизацию',
+            status: 'Информация о сайте',
+          });
+        }, 10000);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    tokenCheck();
+  }, []);
+
+  async function onSaveMovie({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailer,
+    nameRU,
+    nameEN,
+    thumbnail,
+    movieId,
+  }) {
+    try {
+      const newSavedMovie = await saveMovie({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink: trailer,
+        nameRU,
+        nameEN,
+        thumbnail,
+        movieId,
+      });
+      setSavedMovies([...savedMovies, newSavedMovie]);
+    } catch (error) {
+      showError(error);
+    }
+  }
+
+  async function unSavedMovie(_id, id) {
+    if (_id) {
+      try {
+        const deletedMovie = await deleteMovie(_id);
+        const newSavedMovies = savedMovies.filter(
+          (savedMovie) => savedMovie._id !== deletedMovie._id,
+        );
+        setSavedMovies(newSavedMovies);
       } catch (error) {
         showError(error);
       }
     }
-    tokenCheck();
-  }, [navigate]);
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     api
-  //       .getAllInitialData()
-  //       .then((data) => {
-  //         const [cards, info] = data;
-  //         setCurrentUser(info);
-  //         setCards(cards);
-  //       })
-  //       .catch(() => console.log('Невозможно получить доступ, если вы не авторизованы'));
-  //   }
-  // }, [loggedIn]);
+    if (id) {
+      const selectedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === id);
+      setSavedMovies(savedMovies.filter((savedMovie) => savedMovie.movieId !== id));
+      if (selectedMovie) {
+        await deleteMovie(selectedMovie._id);
+      }
+    }
+  }
 
   const updateUserInfo = async ({ name, email }) => {
     try {
@@ -111,13 +200,35 @@ function App() {
           <Route
             path='/movies'
             element={
-              <ProtectedRoute loggedIn={loggedIn} component={<MoviesPage loggedIn={loggedIn} />} />
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                component={
+                  <MoviesPage
+                    onDeleteMovie={unSavedMovie}
+                    movies={isSearched ? searchedMovies : []}
+                    savedMovies={savedMovies}
+                    onSaveMovie={onSaveMovie}
+                    onSearch={searchMovies}
+                    loggedIn={loggedIn}
+                  />
+                }
+              />
             }
           />
           <Route
             path='/saved-movies'
             element={
-              <ProtectedRoute loggedIn={loggedIn} component={<SavedMovies loggedIn={loggedIn} />} />
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                component={
+                  <SavedMovies
+                    onDeleteMovie={unSavedMovie}
+                    movies={searchedSavedMovies}
+                    onSearch={searchSavedMovies}
+                    loggedIn={loggedIn}
+                  />
+                }
+              />
             }
           />
           <Route
@@ -133,7 +244,12 @@ function App() {
           />
           <Route path='*' element={<NotFound />} />
         </Routes>
-        <Modal />
+        <Modal
+          isOpen={error.hasError}
+          name={error.name}
+          status={error.status}
+          onClose={handleCloseModal}
+        />
       </CurrentUserContext.Provider>
     </>
   );
