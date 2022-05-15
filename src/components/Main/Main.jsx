@@ -4,7 +4,7 @@ import { Promo } from '../Promo/Promo';
 import { Tech } from '../Tech/Tech';
 import { About } from '../About/About';
 import './Main.css';
-import Header from '../Header/Header';
+import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 
 export const Main = ({ loggedIn }) => {

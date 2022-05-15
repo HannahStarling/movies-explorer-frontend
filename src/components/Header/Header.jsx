@@ -8,17 +8,14 @@ import './Header.css';
 import { useLocation } from 'react-router-dom';
 import { ROUTES } from '../../utils/constants';
 
-function Header({ loggedIn, type = 'white' }) {
+export function Header({ loggedIn, type = 'white' }) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { pathname } = location;
 
   const [signup, signin] = ROUTES.auth;
-
-  const hasMenu = useMemo(
-    () => loggedIn && pathname !== signup && pathname !== signin,
-    [loggedIn, pathname, signin, signup],
-  );
+  const hasNavigation = pathname !== signup.link && pathname !== signin.link;
+  const hasMenu = loggedIn && hasNavigation;
 
   const handleOpenMenu = () => {
     setIsOpen(!isOpen);
@@ -35,10 +32,8 @@ function Header({ loggedIn, type = 'white' }) {
             <Menu />
           </>
         )}
-        <Navigation loggedIn={loggedIn} />
+        {hasNavigation && <Navigation loggedIn={loggedIn} />}
       </header>
     </>
   );
 }
-
-export default Header;

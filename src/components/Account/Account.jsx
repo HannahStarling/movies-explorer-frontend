@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { AccountForm } from '../AccountForm/AccountForm';
-import Header from '../Header/Header';
+import { Header } from '../Header/Header';
 import { Section } from '../Section/Section';
 import { Title } from '../Title/Title';
 import './Account.css';

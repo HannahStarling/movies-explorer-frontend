@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthForm } from '../AuthForm/AuthForm';
-import Header from '../Header/Header';
+import { Header } from '../Header/Header';
 import { Section } from '../Section/Section';
 import './Register.css';
 
