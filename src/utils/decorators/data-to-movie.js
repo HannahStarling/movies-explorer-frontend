@@ -22,7 +22,9 @@ export const data2movie = (movie) => {
   const duration = convertDuration(movie.duration);
   const src = getFullSource(movie.image);
   const trailer = getTrailerUrl(movie.trailerLink);
-  const thumbnail = getFullSource(movie.image.formats.thumbnail);
+  const thumbnail = movie.image?.formats
+    ? getFullSource(movie.image?.formats?.thumbnail)
+    : movie.thumbnail;
 
   return {
     country: movie.country || DATA_DONT_EXIST,
