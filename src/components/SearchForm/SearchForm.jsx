@@ -13,7 +13,7 @@ export const SearchForm = ({ name, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(values);
-    resetForm();
+    resetForm({ 'movie-search': '', 'movie-filter': values[`${name}-filter`] });
   };
 
   return (
