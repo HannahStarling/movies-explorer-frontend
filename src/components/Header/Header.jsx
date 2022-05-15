@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Menu } from '../Navigation/Menu/Menu';
 import { BurgerBtn } from '../BurgerBtn/BurgerBtn';
 import { MobileNavigation } from '../Navigation/MobileNavigation/MobileNavigation';
 import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
 import './Header.css';
+import { useLocation } from 'react-router-dom';
+import { ROUTES } from '../../utils/constants';
 
-function Header({ className = '', type = 'white', location = '/' }) {
+function Header({ loggedIn, type = 'white' }) {
   const [isOpen, setIsOpen] = useState(false);
-  const hasMenu = location !== '/' && location !== '/signup' && location !== '/signin';
-  const isLogin = location !== '/signup' && location !== '/signin';
+  const location = useLocation();
+  const { pathname } = location;
+
+  const [signup, signin] = ROUTES.auth;
+
+  const hasMenu = useMemo(
+    () => loggedIn && pathname !== signup && pathname !== signin,
+    [loggedIn, pathname, signin, signup],
+  );
 
   const handleOpenMenu = () => {
     setIsOpen(!isOpen);
@@ -17,7 +26,7 @@ function Header({ className = '', type = 'white', location = '/' }) {
 
   return (
     <>
-      <MobileNavigation location={location} isOpen={isOpen} onClose={handleOpenMenu} />
+      <MobileNavigation isOpen={isOpen} onClose={handleOpenMenu} />
       <header className={`header header_type_${type}`}>
         <Logo />
         {hasMenu && (
@@ -26,7 +35,7 @@ function Header({ className = '', type = 'white', location = '/' }) {
             <Menu />
           </>
         )}
-        {isLogin && <Navigation location={location} />}
+        <Navigation loggedIn={loggedIn} />
       </header>
     </>
   );
