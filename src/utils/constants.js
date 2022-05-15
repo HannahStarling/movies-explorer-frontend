@@ -1,4 +1,4 @@
-const LINKS = {
+export const LINKS = {
   socials: [
     {
       id: 'Facebook',
@@ -37,18 +37,21 @@ const LINKS = {
   ],
 };
 
-const ROUTES = {
+export const MAIN_ROUTE = '/';
+export const MOVIES_ROUTE = '/movies';
+
+export const ROUTES = {
   navigation: [
     {
       id: 1,
       title: 'Главная',
-      link: '/',
+      link: MAIN_ROUTE,
       isButton: false,
     },
     {
       id: 2,
       title: 'Фильмы',
-      link: '/movies',
+      link: MOVIES_ROUTE,
       isButton: false,
     },
     {
@@ -82,4 +85,5 @@ const ROUTES = {
   ],
 };
 
-export { LINKS, ROUTES };
+export const SHORT_MOVIE_DURATION = 40;
+export const SAVED_MOVIE_CLASSNAME = 'movie__btn-fav_active';
