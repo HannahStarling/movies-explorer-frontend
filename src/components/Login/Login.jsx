@@ -4,13 +4,14 @@ import Header from '../Header/Header';
 import { Section } from '../Section/Section';
 import './Login.css';
 
-export const Login = () => {
+export const Login = ({ onAuth }) => {
   return (
     <>
       <Header type='small' location='/signup' />
       <main>
         <Section className='auth'>
           <AuthForm
+            onAuth={onAuth}
             isLogin={false}
             title={'Рады видеть!'}
             btnText={'Войти'}

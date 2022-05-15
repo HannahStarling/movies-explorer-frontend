@@ -7,10 +7,10 @@ import './Main.css';
 import Header from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 
-export const Main = ({ colored }) => {
+export const Main = ({ loggedIn }) => {
   return (
     <>
-      <Header type='pink' />
+      <Header type='pink' loggedIn={loggedIn} />
       <main className={`main`}>
         <Promo />
         <AboutProject />

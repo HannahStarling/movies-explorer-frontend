@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import { MovieForm } from '../MovieForm/MovieForm';
 import { Movies } from '../Movies/Movies';
 
-export const SavedMovies = () => {
+export const SavedMovies = ({ loggedIn }) => {
   // const [movies, setMovies] = useState([]);
   // const [query, setQuery] = useState('');
 
@@ -33,12 +33,12 @@ export const SavedMovies = () => {
 
   return (
     <>
-      {/* <Header location='/saved-movies' />
+      <Header loggedIn={loggedIn} />
       <main>
         <MovieForm name={'movie'} />
-        <Movies movies={searchedMovies} button={'delete'} />
+        {/*         <Movies movies={searchedMovies} button={'delete'} /> */}
       </main>
-      <Footer /> */}
+      <Footer />
     </>
   );
 };

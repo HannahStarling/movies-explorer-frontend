@@ -2,6 +2,8 @@ import React from 'react';
 import './Input.css';
 
 export const Input = ({
+  value = '',
+  onChange,
   label,
   error,
   className = '',
@@ -15,6 +17,8 @@ export const Input = ({
     <label className={`${className}__input-label input-label`}>
       {label}
       <input
+        value={value}
+        onChange={onChange}
         autoComplete={autoComplete}
         type={type}
         className={`${className}__input input ${error ? `input_type_error` : ''}`.trim()}

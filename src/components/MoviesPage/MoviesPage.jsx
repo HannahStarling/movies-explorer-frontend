@@ -6,7 +6,7 @@ import { Movies } from '../Movies/Movies';
 import { useMovies } from '../../hooks/useMovies';
 import { getMoviesData } from '../../utils/api/MoviesApi';
 
-export const MoviesPage = ({ isLoadingData, onSubmit, ...props }) => {
+export const MoviesPage = ({ loggedIn, isLoadingData, onSubmit, ...props }) => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
 
@@ -32,7 +32,7 @@ export const MoviesPage = ({ isLoadingData, onSubmit, ...props }) => {
 
   return (
     <>
-      <Header location='/movies' />
+      <Header loggedIn={loggedIn} />
       <main>
         <MovieForm name={'movie'} onSubmit={handleSubmit} />
         <Movies movies={searchedMovies} button={'fav'} />
