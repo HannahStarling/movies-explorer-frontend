@@ -1,19 +1,14 @@
 .account__form {
   display: flex;
   flex-direction: column;
-  gap: calc((11 / 700) * 100vh);
   width: calc((410 / 1280) * 100vw);
 }
 
 .account__input {
-  padding: 0 0 16px;
+  padding: 0 0 20px;
   text-align: left;
   font-size: 11px;
   line-height: 14px;
-}
-
-.account__input-label:last-of-type {
-  margin: 0 0 calc((189 / 700) * 100vh);
 }
 
 .account__input-label:last-of-type > .account__input {
@@ -32,27 +27,33 @@
   font-size: 11px;
   line-height: 14px;
   border-bottom: 1px solid #e8e8e8;
-  padding: 6px 0 16px;
+  padding: 20px 0 20px;
   text-align: left;
 }
 
 .account__non-input:first-of-type {
-  padding: 0 0 16px;
+  padding: 0 0 20px;
 }
 
 .account__non-input:last-of-type {
+  padding-bottom: 42px;
   border-bottom: none;
-  margin: 0 0 calc((189 / 700) * 100vh);
 }
 
 .account__btn {
+  margin: calc((189 / 700) * 100vh) 0 0;
   font-size: 13px;
   line-height: 16px;
 }
 
 .account__btn_type_logout {
+  margin: calc((11 / 700) * 100vh) 0 0;
   font-weight: 500;
   color: #ff4062;
+}
+
+.account__btn:disabled {
+  background-color: transparent;
 }
 
 @media all and (max-width: 1023px) {
@@ -64,10 +65,6 @@
 @media all and (max-width: 719px) {
   .account__form {
     width: calc((260 / 320) * 100vw);
-  }
-
-  .account__input-label:last-of-type {
-    margin: 0 0 calc((347 / 780) * 100vh);
   }
 
   .account__btn {

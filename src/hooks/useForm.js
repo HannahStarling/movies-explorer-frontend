@@ -30,7 +30,7 @@ const useForm = () => {
     (resetValues = {}, resetErrors = {}, resetIsValid = false) => {
       setValues(resetValues);
       setErrors(resetErrors);
-      setIsValid(resetErrors);
+      setIsValid(resetIsValid);
     },
     [setValues, setErrors, setIsValid],
   );

@@ -2,6 +2,8 @@ import React from 'react';
 import './Input.css';
 
 export const Input = ({
+  ariaLabel,
+  validation,
   value = '',
   onChange,
   label,
@@ -11,8 +13,9 @@ export const Input = ({
   type = 'text',
   name,
   placeholder,
-  required,
 }) => {
+  const { minLength, maxLength, required } = validation;
+
   return (
     <label className={`${className}__input-label input-label`}>
       {label}
@@ -25,9 +28,14 @@ export const Input = ({
         id={name}
         name={name}
         placeholder={placeholder}
+        aria-label={ariaLabel}
         required={required}
+        minLength={minLength}
+        maxLength={maxLength}
       />
-      <span className='input-error'>{error}</span>
+      <span className='input-error' aria-live='polite'>
+        {error}
+      </span>
     </label>
   );
 };

@@ -1,9 +1,15 @@
 import React from 'react';
 import './Form.css';
 
-export const Form = ({ children, className = '', onSubmit, name }) => {
+export const Form = ({ children, className = '', onSubmit, name, ...props }) => {
   return (
-    <form onSubmit={onSubmit} className={`${className} form`.trim()} id={name} name={name}>
+    <form
+      {...props}
+      onSubmit={onSubmit}
+      className={`${className} form`.trim()}
+      id={name}
+      name={name}
+    >
       {children}
     </form>
   );

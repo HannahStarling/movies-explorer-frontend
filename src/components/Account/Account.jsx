@@ -6,7 +6,7 @@ import { Section } from '../Section/Section';
 import { Title } from '../Title/Title';
 import './Account.css';
 
-export const Account = ({ loggedIn, onLogOut, onUpdate }) => {
+export const Account = ({ loggedIn, onLogOut, onUpdate, isLoading }) => {
   const { name } = useContext(CurrentUserContext);
 
   return (
@@ -15,7 +15,7 @@ export const Account = ({ loggedIn, onLogOut, onUpdate }) => {
       <main>
         <Section className='account'>
           <Title title={`Привет, ${name}!`} className={'account__title'} />
-          <AccountForm onUpdate={onUpdate} onLogOut={onLogOut} />
+          <AccountForm isLoading={isLoading} onUpdate={onUpdate} onLogOut={onLogOut} />
         </Section>
       </main>
     </>
