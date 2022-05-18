@@ -14,3 +14,9 @@
 .button:focus {
   outline: 3px solid #ff4062;
 }
+
+.button:disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+  cursor: not-allowed;
+}
