@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { Menu } from '../Navigation/Menu/Menu';
 import { BurgerBtn } from '../BurgerBtn/BurgerBtn';
 import { MobileNavigation } from '../Navigation/MobileNavigation/MobileNavigation';
