@@ -39,6 +39,7 @@ export const LINKS = {
 
 export const MAIN_ROUTE = '/';
 export const MOVIES_ROUTE = '/movies';
+export const SAVED_MOVIE_ROUTE = '/saved-movies';
 
 export const ROUTES = {
   navigation: [
@@ -57,7 +58,7 @@ export const ROUTES = {
     {
       id: 3,
       title: 'Сохранённые фильмы',
-      link: '/saved-movies',
+      link: SAVED_MOVIE_ROUTE,
       isButton: false,
     },
   ],
@@ -87,3 +88,31 @@ export const ROUTES = {
 
 export const SHORT_MOVIE_DURATION = 40;
 export const SAVED_MOVIE_CLASSNAME = 'movie__btn-fav_active';
+
+export const WARNING_TEXT = {
+  SAVED_MOVIES: 'В избранном пока ничего нет.',
+  MOVIES: 'Введите поисковый запрос для отображения фильмов.',
+};
+
+export const SUCCESS_MESSAGES = {
+  AUTH: 'Аутентификация прошла успешно',
+  PROFILE_UPDATE: 'Обновление профиля прошло успешно',
+};
+
+export const ERROR_MESSAGES = {
+  BAD_REQUEST: 'Неправльно введён логин или пароль.',
+  NOT_FOUND: 'По запросу ничего не найдено.',
+  CONFLICT: 'Пользователь с таким e-mail уже зарегестрирован.',
+  INTERNAL: 'Произошла ошибка на стороне сервера.',
+  REGISTRATION: 'При регистрации пользователя произошла ошибка.',
+  PROFILE_UPDATE: 'При обновлении профиля произошла ошибка.',
+  SAVED_MOVIES: 'При добавлении фильма в избранное возникла ошибка.',
+  REQUEST:
+    'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
+};
+
+export const PATTERNS = {
+  NAME: /^[А-Яа-яa-zA-Z-]+$/,
+  EMAIL: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,4})$/i,
+  PASSWORD: /^[A-Za-z0-9-!@#$%^&*]+$/,
+};

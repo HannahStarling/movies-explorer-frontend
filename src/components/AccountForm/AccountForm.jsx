@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import useForm from '../../hooks/useForm';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { PATTERNS } from '../../utils/validation/constants';
+import { PATTERNS } from '../../utils/constants';
 import { Button } from '../Button/Button';
 import { Form } from '../Form/Form';
 import { Input } from '../Input/Input';

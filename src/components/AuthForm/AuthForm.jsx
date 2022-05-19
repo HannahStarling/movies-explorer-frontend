@@ -6,7 +6,7 @@ import { Form } from '../Form/Form';
 import { Input } from '../Input/Input';
 import { Title } from '../Title/Title';
 import { Preloader } from '../Preloader/Preloader';
-import { PATTERNS } from '../../utils/validation/constants';
+import { PATTERNS } from '../../utils/constants';
 import './AuthForm.css';
 
 export const AuthForm = ({
