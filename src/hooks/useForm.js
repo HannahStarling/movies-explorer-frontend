@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-const useForm = () => {
-  const [values, setValues] = useState({});
+const useForm = (initialValues) => {
+  const [values, setValues] = useState(initialValues ?? {});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
@@ -10,6 +10,14 @@ const useForm = () => {
     const values = type === 'checkbox' ? checked : value;
 
     setValues((prevValues) => {
+      if (name === 'movie-search' && !values.trim().length) {
+        setErrors((prevErrors) => {
+          return {
+            ...prevErrors,
+            [name]: 'Необходимо ввести ключевое слово',
+          };
+        });
+      }
       return {
         ...prevValues,
         [name]: values,

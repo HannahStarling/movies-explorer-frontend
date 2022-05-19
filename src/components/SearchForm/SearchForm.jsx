@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import useForm from '../../hooks/useForm';
 import { CheckBox } from '../CheckBox/CheckBox';
 import { Form } from '../Form/Form';
 import { SearchInput } from '../SearchInput/SearchInput';
-import useForm from '../../hooks/useForm';
+import { useLocation } from 'react-router-dom';
+import { MOVIES_ROUTE } from '../../utils/constants';
 import './SearchForm.css';
 
-export const SearchForm = ({ name, onSubmit }) => {
-  const { values, handleChange, resetForm } = useForm();
-  const query = values[`${name}-search`];
-  const checked = values[`${name}-filter`];
+export const SearchForm = ({ name, onSubmit, isLoading, onCheck }) => {
+  const { pathname } = useLocation();
+
+  const prevQuery =
+    pathname === MOVIES_ROUTE
+      ? JSON.parse(localStorage.getItem('moviesQuery'))
+      : JSON.parse(localStorage.getItem('savedMoviesQuery'));
+
+  const prevChecked =
+    pathname === MOVIES_ROUTE
+      ? JSON.parse(localStorage.getItem('moviesIsChecked'))
+      : JSON.parse(localStorage.getItem('savedMoviesIsChecked'));
+
+  const { values, handleChange, resetForm, errors } = useForm({
+    [`${name}-search`]: prevQuery || '',
+    [`${name}-filter`]: prevChecked || '',
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,10 +31,22 @@ export const SearchForm = ({ name, onSubmit }) => {
     resetForm({ 'movie-search': '', 'movie-filter': values[`${name}-filter`] });
   };
 
+  useEffect(() => {
+    onCheck(values[`${name}-filter`]);
+  }, [name, onCheck, values]);
+
+  const isDisabled =
+    typeof errors[`${name}-search`] !== 'undefined' && errors[`${name}-search`].length;
+
   return (
     <Form name={'movie-search'} onSubmit={handleSubmit} className='form_type_search'>
-      <SearchInput onSearch={handleChange} query={query} />
-      <CheckBox onCheck={handleChange} checked={checked} />
+      <SearchInput
+        disabled={isDisabled || isLoading}
+        error={errors[`${name}-search`]}
+        onSearch={handleChange}
+        query={values[`${name}-search`]}
+      />
+      <CheckBox onCheck={handleChange} checked={values[`${name}-filter`]} />
     </Form>
   );
 };

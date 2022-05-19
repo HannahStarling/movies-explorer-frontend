@@ -22,10 +22,12 @@ import {
 } from '../../utils/api/MainApi';
 import { useMovies } from '../../hooks/useMovies';
 import { getMoviesData } from '../../utils/api/MoviesApi';
-import { MAIN_ROUTE, MOVIES_ROUTE } from '../../utils/constants';
+import { MAIN_ROUTE, MOVIES_ROUTE, ERROR_MESSAGES } from '../../utils/constants';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState({ hasError: false, name: '', status: '', error: '' });
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -36,35 +38,51 @@ function App() {
   const [querySavedMovies, setQuerySavedMovies] = useState('');
   const [isSearched, setIsSearched] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [error, setError] = useState({ hasError: false, name: '', status: '', error: '' });
 
   const navigate = useNavigate();
-  // localStorage.clear();
 
   const searchedMovies = useMovies(movies, queryMovies, isChecked);
   const searchedSavedMovies = useMovies(savedMovies, querySavedMovies, isChecked);
 
   const searchMovies = (searchedMovies) => {
+    setIsLoading(true);
     setQueryMovies(searchedMovies['movie-search']);
     setIsChecked(!!searchedMovies['movie-filter']);
-    localStorage.setItem('movies', JSON.stringify(movies));
-    localStorage.setItem('moviesQuery', JSON.stringify(queryMovies));
-    localStorage.setItem('moviesIsChecked', JSON.stringify(isChecked));
+    localStorage.setItem('moviesQuery', JSON.stringify(searchedMovies['movie-search']));
+    localStorage.setItem('moviesIsChecked', JSON.stringify(!!searchedMovies['movie-filter']));
     setIsSearched(true);
+    setIsLoading(false);
   };
 
   const searchSavedMovies = (searchedMovies) => {
+    setIsLoading(true);
     setQuerySavedMovies(searchedMovies['movie-search']);
     setIsChecked(!!searchedMovies['movie-filter']);
-    localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
-    localStorage.setItem('savedMoviesQuery', JSON.stringify(querySavedMovies));
-    localStorage.setItem('savedMoviesIsChecked', JSON.stringify(isChecked));
+    localStorage.setItem('savedMoviesQuery', JSON.stringify(searchedMovies['movie-search']));
+    localStorage.setItem('savedMoviesIsChecked', JSON.stringify(!!searchedMovies['movie-filter']));
+    setIsLoading(false);
   };
 
-  const showError = ({ name, status, ...error }) => {
+  const showError = ({ custom = ERROR_MESSAGES.INTERNAL, status, ...error }) => {
+    const { BAD_REQUEST, NOT_FOUND, CONFLICT, INTERNAL } = ERROR_MESSAGES;
+    let name;
+    switch (status) {
+      case 400:
+        name = BAD_REQUEST;
+        break;
+      case 404:
+        name = NOT_FOUND;
+        break;
+      case 409:
+        name = CONFLICT;
+        break;
+      case 500:
+        name = INTERNAL;
+        break;
+      default:
+        name = custom;
+        break;
+    }
     setError((prev) => ({ ...prev, hasError: true, name, status, ...error }));
   };
 
@@ -74,21 +92,48 @@ function App() {
 
   async function handleRegistration({ name, password, email }) {
     try {
+      setIsLoading(true);
       await register(name, password, email);
       handleLogin({ password, email });
     } catch (error) {
-      showError(error);
+      showError({ custom: ERROR_MESSAGES.REGISTRATION, status: error.status, error });
+    } finally {
+      setIsLoading(false);
     }
   }
 
+  useEffect(() => {
+    async function getMovies() {
+      try {
+        setIsLoading(true);
+        const movies = await getMoviesData();
+        setMovies(movies);
+      } catch (error) {
+        showError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if (isSearched) {
+      if (!movies.length) {
+        getMovies();
+      }
+    }
+  }, [isSearched, movies.length]);
+
   async function handleLogin({ password, email }) {
     try {
+      setIsLoading(true);
       await authorize(password, email);
       setLoggedIn(true);
+      const [savedMovies, user] = await Promise.all([getMovies(), getUser()]);
+      setSavedMovies(savedMovies);
+      setCurrentUser(user);
       navigate(MOVIES_ROUTE);
     } catch (error) {
-      console.log(error);
       showError(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -108,18 +153,20 @@ function App() {
       try {
         setIsLoading(true);
         const user = await getUser();
-        const [movies, savedMovies] = await Promise.all([getMoviesData(), getMovies()]);
-        setSavedMovies(savedMovies);
-        setMovies(movies);
-        setCurrentUser(user);
         setLoggedIn(true);
+        const savedMovies = await getMovies();
+        setSavedMovies(savedMovies);
+        setCurrentUser(user);
       } catch (_) {
         setTimeout(() => {
           showError({
-            name: 'Чтобы получить доступ к возможностям сайта необходимо пройти авторизацию',
+            custom: 'Чтобы получить доступ к возможностям сайта необходимо пройти авторизацию',
             status: 'Информация о сайте',
           });
-        }, 10000);
+          setTimeout(() => {
+            setError((prev) => ({ ...prev, name: '', status: '', hasError: false }));
+          }, 3000);
+        }, 3000);
       } finally {
         setIsLoading(false);
       }
@@ -141,6 +188,7 @@ function App() {
     movieId,
   }) {
     try {
+      setIsLoading(true);
       const newSavedMovie = await saveMovie({
         country,
         director,
@@ -157,12 +205,15 @@ function App() {
       setSavedMovies([...savedMovies, newSavedMovie]);
     } catch (error) {
       showError(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   async function unSavedMovie(_id, id) {
     if (_id) {
       try {
+        setIsLoading(true);
         const deletedMovie = await deleteMovie(_id);
         const newSavedMovies = savedMovies.filter(
           (savedMovie) => savedMovie._id !== deletedMovie._id,
@@ -170,23 +221,35 @@ function App() {
         setSavedMovies(newSavedMovies);
       } catch (error) {
         showError(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     if (id) {
-      const selectedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === id);
-      setSavedMovies(savedMovies.filter((savedMovie) => savedMovie.movieId !== id));
-      if (selectedMovie) {
-        await deleteMovie(selectedMovie._id);
+      try {
+        const selectedMovie = savedMovies.find((savedMovie) => savedMovie.movieId === id);
+        setSavedMovies(savedMovies.filter((savedMovie) => savedMovie.movieId !== id));
+        if (selectedMovie) {
+          setIsLoading(true);
+          await deleteMovie(selectedMovie._id);
+        }
+      } catch (error) {
+        showError(error);
+      } finally {
+        setIsLoading(false);
       }
     }
   }
 
   const updateUserInfo = async ({ name, email }) => {
     try {
+      setIsLoading(true);
       const userInfo = await updateUser({ name, email });
       setCurrentUser(userInfo);
     } catch (error) {
       showError(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -195,8 +258,16 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
           <Route path='/' element={<Main loggedIn={loggedIn} />} />
-          <Route path='/signup' element={<Register onAuth={handleRegistration} />} />
-          <Route path='/signin' element={<Login onAuth={handleLogin} />} />
+          <Route
+            path='/signup'
+            element={
+              <Register isLoading={isLoading} errorText={error.name} onAuth={handleRegistration} />
+            }
+          />
+          <Route
+            path='/signin'
+            element={<Login isLoading={isLoading} errorText={error.name} onAuth={handleLogin} />}
+          />
           <Route
             path='/movies'
             element={
@@ -204,6 +275,10 @@ function App() {
                 loggedIn={loggedIn}
                 component={
                   <MoviesPage
+                    onCheck={setIsChecked}
+                    isSearched={isSearched}
+                    isError={error.hasError}
+                    isLoading={isLoading}
                     onDeleteMovie={unSavedMovie}
                     movies={isSearched ? searchedMovies : []}
                     savedMovies={savedMovies}
@@ -222,6 +297,10 @@ function App() {
                 loggedIn={loggedIn}
                 component={
                   <SavedMovies
+                    isSearched={isSearched}
+                    onCheck={setIsChecked}
+                    isError={error.hasError}
+                    isLoading={isLoading}
                     onDeleteMovie={unSavedMovie}
                     movies={searchedSavedMovies}
                     onSearch={searchSavedMovies}
@@ -237,7 +316,12 @@ function App() {
               <ProtectedRoute
                 loggedIn={loggedIn}
                 component={
-                  <Account loggedIn={loggedIn} onLogOut={onLogOut} onUpdate={updateUserInfo} />
+                  <Account
+                    isLoading={isLoading}
+                    loggedIn={loggedIn}
+                    onLogOut={onLogOut}
+                    onUpdate={updateUserInfo}
+                  />
                 }
               />
             }

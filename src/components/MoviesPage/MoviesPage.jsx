@@ -7,20 +7,24 @@ import { Movies } from '../Movies/Movies';
 export const MoviesPage = ({
   savedMovies,
   loggedIn,
-  isLoadingData,
-  onSubmit,
+  isLoading,
   onSearch,
   movies,
   onDeleteMovie,
   onSaveMovie,
-  ...props
+  isError,
+  isSearched,
+  onCheck,
 }) => {
   return (
     <>
       <Header loggedIn={loggedIn} />
       <main>
-        <MovieForm name={'movie'} onSubmit={onSearch} />
+        <MovieForm onCheck={onCheck} name={'movie'} onSubmit={onSearch} />
         <Movies
+          isSearched={isSearched}
+          isError={isError}
+          isLoading={isLoading}
           savedMovies={savedMovies}
           onDeleteMovie={onDeleteMovie}
           onSaveMovie={onSaveMovie}

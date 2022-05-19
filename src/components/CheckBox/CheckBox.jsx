@@ -11,7 +11,7 @@ export const CheckBox = ({ onCheck, checked = '', spanText = 'Короткоме
         id={'movie-filter'}
         name={'movie-filter'}
         onChange={onCheck}
-        value={checked}
+        value={checked || ''}
         checked={checked}
       />
       <label

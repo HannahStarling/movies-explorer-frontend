@@ -48,6 +48,7 @@ export const Movie = ({
           <h3 className='movie__title'>{nameRU || nameEN}</h3>
           <Paragraph text={duration} className='movie__duration' />
           <Button
+            disabled={isDisabledButton}
             onClick={onClickButton}
             className={`movie__btn movie__btn-${button} ${
               isSaved ? SAVED_MOVIE_CLASSNAME : ''
