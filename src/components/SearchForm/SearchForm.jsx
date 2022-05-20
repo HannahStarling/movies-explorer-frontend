@@ -38,7 +38,7 @@ export const SearchForm = ({ name, onSubmit, isLoading, onCheck }) => {
     } else {
       localStorage.setItem('savedMoviesIsChecked', JSON.stringify(!!values[`${name}-filter`]));
     }
-  }, [name, onCheck, values]);
+  }, [name, onCheck, pathname, values]);
 
   const isDisabled =
     typeof errors[`${name}-search`] !== 'undefined' && errors[`${name}-search`].length;
