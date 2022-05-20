@@ -13,7 +13,7 @@ export const SearchForm = ({ name, onSubmit, isLoading, onCheck }) => {
   const prevQuery =
     pathname === MOVIES_ROUTE
       ? JSON.parse(localStorage.getItem('moviesQuery'))
-      : JSON.parse(localStorage.getItem('savedMoviesQuery'));
+      : JSON.parse(localStorage.getItem('moviesIsChecked'));
 
   const prevChecked =
     pathname === MOVIES_ROUTE
@@ -33,6 +33,11 @@ export const SearchForm = ({ name, onSubmit, isLoading, onCheck }) => {
 
   useEffect(() => {
     onCheck(values[`${name}-filter`]);
+    if (pathname === MOVIES_ROUTE) {
+      localStorage.setItem('moviesIsChecked', JSON.stringify(!!values[`${name}-filter`]));
+    } else {
+      localStorage.setItem('savedMoviesIsChecked', JSON.stringify(!!values[`${name}-filter`]));
+    }
   }, [name, onCheck, values]);
 
   const isDisabled =
