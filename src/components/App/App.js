@@ -96,7 +96,7 @@ function App() {
       await register(name, password, email);
       handleLogin({ password, email });
     } catch (error) {
-      showError({ custom: ERROR_MESSAGES.REGISTRATION, status: error.status, error });
+      showError({ custom: ERROR_MESSAGES.REGISTRATION, status: error.status, ...error });
     } finally {
       setIsLoading(false);
     }
@@ -124,14 +124,16 @@ function App() {
   async function handleLogin({ password, email }) {
     try {
       setIsLoading(true);
-      await authorize(password, email);
-      setLoggedIn(true);
-      const [savedMovies, user] = await Promise.all([getMovies(), getUser()]);
-      setSavedMovies(savedMovies);
-      setCurrentUser(user);
-      navigate(MOVIES_ROUTE);
+      const { message } = await authorize(password, email);
+      if (message) {
+        setLoggedIn(true);
+        const [savedMovies, user] = await Promise.all([getMovies(), getUser()]);
+        setSavedMovies(savedMovies);
+        setCurrentUser(user);
+        navigate(MOVIES_ROUTE);
+      }
     } catch (error) {
-      showError(error);
+      showError({ custom: ERROR_MESSAGES.BAD_REQUEST, status: error.status, ...error });
     } finally {
       setIsLoading(false);
     }
@@ -204,7 +206,7 @@ function App() {
       });
       setSavedMovies([...savedMovies, newSavedMovie]);
     } catch (error) {
-      showError(error);
+      showError({ custom: ERROR_MESSAGES.SAVED_MOVIES, status: error.status, ...error });
     } finally {
       setIsLoading(false);
     }
@@ -220,7 +222,7 @@ function App() {
         );
         setSavedMovies(newSavedMovies);
       } catch (error) {
-        showError(error);
+        showError({ custom: ERROR_MESSAGES.REQUEST, status: error.status, ...error });
       } finally {
         setIsLoading(false);
       }
@@ -234,7 +236,7 @@ function App() {
           await deleteMovie(selectedMovie._id);
         }
       } catch (error) {
-        showError(error);
+        showError({ custom: ERROR_MESSAGES.REQUEST, status: error.status, ...error });
       } finally {
         setIsLoading(false);
       }
@@ -247,7 +249,7 @@ function App() {
       const userInfo = await updateUser({ name, email });
       setCurrentUser(userInfo);
     } catch (error) {
-      showError(error);
+      showError({ custom: ERROR_MESSAGES.PROFILE_UPDATE, status: error.status, ...error });
     } finally {
       setIsLoading(false);
     }
