@@ -57,6 +57,7 @@ export const Movie = ({
           />
         </figcaption>
         <Anchor
+          className={'movie__link'}
           link={trailer}
           aria-label={`Открыть в соседней вкладке трейлер фильма "${nameRU || nameEN}"`}
         >
