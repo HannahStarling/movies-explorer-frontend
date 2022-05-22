@@ -46,6 +46,32 @@ function App() {
   const searchedMovies = useMovies(movies, queryMovies, isChecked);
   const searchedSavedMovies = useMovies(savedMovies, querySavedMovies, isChecked);
 
+  useEffect(() => {
+    async function tokenCheck() {
+      try {
+        setIsLoading(true);
+        const user = await getUser();
+        setLoggedIn(true);
+        const savedMovies = await getMovies();
+        setSavedMovies(savedMovies);
+        setCurrentUser(user);
+      } catch (_) {
+        setTimeout(() => {
+          showError({
+            custom: 'Чтобы получить доступ к возможностям сайта необходимо пройти авторизацию',
+            status: 'Информация о сайте',
+          });
+          setTimeout(() => {
+            setError((prev) => ({ ...prev, name: '', status: '', hasError: false }));
+          }, 3000);
+        }, 3000);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    tokenCheck();
+  }, []);
+
   const searchMovies = (searchedMovies) => {
     setIsLoading(true);
     setQueryMovies(searchedMovies['movie-search']);
@@ -154,45 +180,22 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    async function tokenCheck() {
-      try {
-        setIsLoading(true);
-        const user = await getUser();
-        setLoggedIn(true);
-        const savedMovies = await getMovies();
-        setSavedMovies(savedMovies);
-        setCurrentUser(user);
-      } catch (_) {
-        setTimeout(() => {
-          showError({
-            custom: 'Чтобы получить доступ к возможностям сайта необходимо пройти авторизацию',
-            status: 'Информация о сайте',
-          });
-          setTimeout(() => {
-            setError((prev) => ({ ...prev, name: '', status: '', hasError: false }));
-          }, 3000);
-        }, 3000);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    tokenCheck();
-  }, []);
-
-  async function onSaveMovie({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
-  }) {
+  async function onSaveMovie(
+    {
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailer,
+      nameRU,
+      nameEN,
+      thumbnail,
+      movieId,
+    },
+    setIsDisabled,
+  ) {
     try {
       setIsLoading(true);
       const newSavedMovie = await saveMovie({
@@ -212,11 +215,12 @@ function App() {
     } catch (error) {
       showError({ custom: ERROR_MESSAGES.SAVED_MOVIES, status: error.status, ...error });
     } finally {
+      setIsDisabled(false);
       setIsLoading(false);
     }
   }
 
-  async function unSavedMovie(_id, id) {
+  async function unSavedMovie(_id, id, setIsDisabled) {
     if (_id) {
       try {
         setIsLoading(true);
@@ -228,6 +232,7 @@ function App() {
       } catch (error) {
         showError({ custom: ERROR_MESSAGES.REQUEST, status: error.status, ...error });
       } finally {
+        setIsDisabled(false);
         setIsLoading(false);
       }
     }
@@ -242,6 +247,7 @@ function App() {
       } catch (error) {
         showError({ custom: ERROR_MESSAGES.REQUEST, status: error.status, ...error });
       } finally {
+        setIsDisabled(false);
         setIsLoading(false);
       }
     }

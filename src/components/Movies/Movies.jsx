@@ -90,7 +90,6 @@ export const Movies = ({
           {renderingMovies.slice(0, moviesNumber).map((movie) => {
             return (
               <Movie
-                isDisabledButton={isLoading}
                 key={movie.id || movie._id}
                 savedMovies={savedMovies}
                 onSaveMovie={onSaveMovie}
