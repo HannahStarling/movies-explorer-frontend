@@ -144,11 +144,12 @@ function App() {
   async function onLogOut() {
     try {
       await logOut();
-    } catch (_) {
       setLoggedIn(false);
       navigate(MAIN_ROUTE);
       setIsSearched(false);
       localStorage.clear();
+    } catch (error) {
+      showError({ custom: ERROR_MESSAGES.LOGOUT, status: error.status, ...error });
     }
   }
 
