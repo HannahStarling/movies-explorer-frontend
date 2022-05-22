@@ -28,7 +28,6 @@ export const SearchForm = ({ name, onSubmit, isLoading, onCheck }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(values);
-    resetForm({ 'movie-search': '', 'movie-filter': values[`${name}-filter`] });
   };
 
   useEffect(() => {
