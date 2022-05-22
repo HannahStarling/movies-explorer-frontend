@@ -9,7 +9,7 @@ import { Paragraph } from '../Paragraph/Paragraph';
 import { Preloader } from '../Preloader/Preloader';
 import './AccountForm.css';
 
-export const AccountForm = ({ onLogOut, onUpdate, isLoading }) => {
+export const AccountForm = ({ onLogOut, onUpdate, isLoading, infoMessage }) => {
   const [isEdited, setIsEdited] = useState(false);
   const [formIsValid, setFormIsValid] = useState(false);
   const [nameIsValid, setNameIsValid] = useState(false);
@@ -87,6 +87,7 @@ export const AccountForm = ({ onLogOut, onUpdate, isLoading }) => {
         <>
           <Paragraph className='account__non-input'>{name}</Paragraph>
           <Paragraph className='account__non-input'>{email}</Paragraph>
+          <span className={'auth__error'}>{infoMessage}</span>
           <Button
             onClick={handleUpdate}
             type={'button'}

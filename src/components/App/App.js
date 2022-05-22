@@ -22,7 +22,7 @@ import {
 } from '../../utils/api/MainApi';
 import { useMovies } from '../../hooks/useMovies';
 import { getMoviesData } from '../../utils/api/MoviesApi';
-import { MAIN_ROUTE, MOVIES_ROUTE, ERROR_MESSAGES } from '../../utils/constants';
+import { MAIN_ROUTE, MOVIES_ROUTE, ERROR_MESSAGES, SUCCESS_MESSAGES } from '../../utils/constants';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,6 +30,7 @@ function App() {
   const [error, setError] = useState({ hasError: false, name: '', status: '', error: '' });
 
   const [currentUser, setCurrentUser] = useState({});
+  const [userChangingStatus, setUserChangingStatus] = useState('');
 
   const [movies, setMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -251,10 +252,14 @@ function App() {
       setIsLoading(true);
       const userInfo = await updateUser({ name, email });
       setCurrentUser(userInfo);
+      setUserChangingStatus(SUCCESS_MESSAGES.PROFILE_UPDATE);
     } catch (error) {
       showError({ custom: ERROR_MESSAGES.PROFILE_UPDATE, status: error.status, ...error });
     } finally {
       setIsLoading(false);
+      setTimeout(() => {
+        setUserChangingStatus('');
+      }, 3000);
     }
   };
 
@@ -322,6 +327,7 @@ function App() {
                 loggedIn={loggedIn}
                 component={
                   <Account
+                    infoMessage={userChangingStatus}
                     isLoading={isLoading}
                     loggedIn={loggedIn}
                     onLogOut={onLogOut}

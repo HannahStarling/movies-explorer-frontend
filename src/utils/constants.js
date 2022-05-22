@@ -113,7 +113,7 @@ export const ERROR_MESSAGES = {
 };
 
 export const PATTERNS = {
-  NAME: /^[А-Яа-яa-zA-Z-]+$/,
+  NAME: /^[А-Яа-яa-zA-Z- ]+$/,
   EMAIL: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,4})$/i,
   PASSWORD: /^[A-Za-z0-9-!@#$%^&*]+$/,
 };
