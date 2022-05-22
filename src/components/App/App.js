@@ -25,7 +25,7 @@ import { getMoviesData } from '../../utils/api/MoviesApi';
 import { MAIN_ROUTE, MOVIES_ROUTE, ERROR_MESSAGES, SUCCESS_MESSAGES } from '../../utils/constants';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({ hasError: false, name: '', status: '', error: '' });
 
@@ -56,6 +56,7 @@ function App() {
         setSavedMovies(savedMovies);
         setCurrentUser(user);
       } catch (_) {
+        setLoggedIn(false);
         setTimeout(() => {
           showError({
             custom: 'Чтобы получить доступ к возможностям сайта необходимо пройти авторизацию',
@@ -64,7 +65,7 @@ function App() {
           setTimeout(() => {
             setError((prev) => ({ ...prev, name: '', status: '', hasError: false }));
           }, 3000);
-        }, 3000);
+        }, 2500);
       } finally {
         setIsLoading(false);
       }
@@ -93,7 +94,7 @@ function App() {
   };
 
   const showError = ({ custom = ERROR_MESSAGES.INTERNAL, status, ...error }) => {
-    const { BAD_REQUEST, NOT_FOUND, CONFLICT, INTERNAL } = ERROR_MESSAGES;
+    const { BAD_REQUEST, NOT_FOUND, CONFLICT, INTERNAL, TO_MANY_REQUESTS } = ERROR_MESSAGES;
     let name;
     switch (status) {
       case 400:
@@ -104,6 +105,9 @@ function App() {
         break;
       case 409:
         name = CONFLICT;
+        break;
+      case 429:
+        name = TO_MANY_REQUESTS;
         break;
       case 500:
         name = INTERNAL;

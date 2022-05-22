@@ -1,7 +1,4 @@
-export const MAIN_API_URL = 'http://localhost:3000';
-
-
-//export const MAIN_API_URL = 'https://api.filmski.istrazivac.nomoredomains.work';
+export const MAIN_API_URL = 'https://api.filmski.istrazivac.nomoredomains.work';
 export const MOVIES_API_URL = 'https://api.nomoreparties.co';
 
 export const API_ERROR_MESSAGE =
