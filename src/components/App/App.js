@@ -37,6 +37,7 @@ function App() {
   const [queryMovies, setQueryMovies] = useState('');
   const [querySavedMovies, setQuerySavedMovies] = useState('');
   const [isSearched, setIsSearched] = useState(false);
+  const [isSavedSearched, setIsSavedSearched] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ function App() {
     setIsChecked(!!searchedMovies['movie-filter']);
     localStorage.setItem('savedMoviesQuery', JSON.stringify(searchedMovies['movie-search']));
     localStorage.setItem('savedMoviesIsChecked', JSON.stringify(!!searchedMovies['movie-filter']));
+    setIsSavedSearched(true);
     setIsLoading(false);
   };
 
@@ -299,12 +301,12 @@ function App() {
                 loggedIn={loggedIn}
                 component={
                   <SavedMovies
-                    isSearched={isSearched}
+                    isSearched={isSavedSearched}
                     onCheck={setIsChecked}
                     isError={error.hasError}
                     isLoading={isLoading}
                     onDeleteMovie={unSavedMovie}
-                    movies={searchedSavedMovies}
+                    movies={isSavedSearched ? searchedSavedMovies : savedMovies}
                     onSearch={searchSavedMovies}
                     loggedIn={loggedIn}
                   />

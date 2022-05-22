@@ -38,7 +38,6 @@ export const Movies = ({
   const isMoviesPage = pathname === MOVIES_ROUTE;
   const isSavedMoviesPage = pathname === SAVED_MOVIE_ROUTE;
 
-  const NOT_FOUND = !renderingMovies.length && isSearched;
   const BANNER_TEXT = isMoviesPage ? WARNING_TEXT.MOVIES : WARNING_TEXT.SAVED_MOVIES;
 
   useEffect(() => {
@@ -86,7 +85,7 @@ export const Movies = ({
 
   return (
     <Section className='movies'>
-      {!!movies.length && (
+      {!!movies.length ? (
         <List listStyle='movies__list'>
           {renderingMovies.slice(0, moviesNumber).map((movie) => {
             return (
@@ -102,10 +101,13 @@ export const Movies = ({
             );
           })}
         </List>
+      ) : (
+        <>
+          {!isLoading && isError && <InfoBanner info={ERROR_MESSAGES.REQUEST} />}
+          {!isLoading && isSearched && <InfoBanner info={ERROR_MESSAGES.NOT_FOUND} />}
+          {!isLoading && !isSearched && <InfoBanner info={BANNER_TEXT} />}
+        </>
       )}
-      {!isLoading && isError && <InfoBanner info={ERROR_MESSAGES.REQUEST} />}
-      {!isLoading && NOT_FOUND && <InfoBanner info={ERROR_MESSAGES.NOT_FOUND} />}
-      {!isLoading && !renderingMovies.length && !NOT_FOUND && <InfoBanner info={BANNER_TEXT} />}
       {!!movies.length && renderingMovies.length >= moviesNumber && (
         <Pagination onButtonClick={addMoreMovie} />
       )}
