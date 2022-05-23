@@ -1,4 +1,4 @@
-const LINKS = {
+export const LINKS = {
   socials: [
     {
       id: 'Facebook',
@@ -37,24 +37,28 @@ const LINKS = {
   ],
 };
 
-const ROUTES = {
+export const MAIN_ROUTE = '/';
+export const MOVIES_ROUTE = '/movies';
+export const SAVED_MOVIE_ROUTE = '/saved-movies';
+
+export const ROUTES = {
   navigation: [
     {
       id: 1,
       title: 'Главная',
-      link: '/',
+      link: MAIN_ROUTE,
       isButton: false,
     },
     {
       id: 2,
       title: 'Фильмы',
-      link: '/movies',
+      link: MOVIES_ROUTE,
       isButton: false,
     },
     {
       id: 3,
       title: 'Сохранённые фильмы',
-      link: '/saved-movies',
+      link: SAVED_MOVIE_ROUTE,
       isButton: false,
     },
   ],
@@ -82,19 +86,35 @@ const ROUTES = {
   ],
 };
 
-const movies = [
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-  { image: 'https://picsum.photos/364/203', nameRU: '33 слова о дизайне', duration: '1ч 47м' },
-];
+export const SHORT_MOVIE_DURATION = 40;
+export const SAVED_MOVIE_CLASSNAME = 'movie__btn-fav_active';
 
-export { LINKS, ROUTES, movies };
+export const WARNING_TEXT = {
+  SAVED_MOVIES: 'В избранном пока ничего нет.',
+  MOVIES: 'Введите поисковый запрос для отображения фильмов.',
+};
+
+export const SUCCESS_MESSAGES = {
+  AUTH: 'Аутентификация прошла успешно',
+  PROFILE_UPDATE: 'Обновление профиля прошло успешно',
+};
+
+export const ERROR_MESSAGES = {
+  TO_MANY_REQUESTS: 'Превышено количество запросов достуных для одного аккаунта, повторите попытку через 15 минут.',
+  BAD_REQUEST: 'Неправильно введён логин или пароль.',
+  NOT_FOUND: 'По запросу ничего не найдено.',
+  CONFLICT: 'Пользователь с таким e-mail уже зарегестрирован.',
+  INTERNAL: 'Произошла ошибка на стороне сервера.',
+  REGISTRATION: 'При регистрации пользователя произошла ошибка.',
+  PROFILE_UPDATE: 'При обновлении профиля произошла ошибка.',
+  SAVED_MOVIES: 'При добавлении фильма в избранное возникла ошибка.',
+  LOGOUT: 'Не удалось выйти из аккаунта. Подождите немного и попробуйте ещё раз.',
+  REQUEST:
+    'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
+};
+
+export const PATTERNS = {
+  NAME: /^[А-Яа-яa-zA-Z- ]+$/,
+  EMAIL: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,4})$/i,
+  PASSWORD: /^[A-Za-z0-9-!@#$%^&*]+$/,
+};

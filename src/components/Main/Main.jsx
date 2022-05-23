@@ -4,13 +4,13 @@ import { Promo } from '../Promo/Promo';
 import { Tech } from '../Tech/Tech';
 import { About } from '../About/About';
 import './Main.css';
-import Header from '../Header/Header';
+import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 
-export const Main = ({ colored }) => {
+export const Main = ({ loggedIn }) => {
   return (
     <>
-      <Header type='pink' />
+      <Header type='pink' loggedIn={loggedIn} />
       <main className={`main`}>
         <Promo />
         <AboutProject />

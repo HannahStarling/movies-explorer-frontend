@@ -1,19 +1,36 @@
 import React from 'react';
-import Header from '../Header/Header';
+import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import { MovieForm } from '../MovieForm/MovieForm';
 import { Movies } from '../Movies/Movies';
-import { Pagination } from '../Pagination/Pagination';
-import { movies } from '../../utils/constants';
 
-export const MoviesPage = () => {
+export const MoviesPage = ({
+  savedMovies,
+  loggedIn,
+  isLoading,
+  onSearch,
+  movies,
+  onDeleteMovie,
+  onSaveMovie,
+  isError,
+  isSearched,
+  onCheck,
+}) => {
   return (
     <>
-      <Header location='/movies' />
+      <Header loggedIn={loggedIn} />
       <main>
-        <MovieForm />
-        <Movies />
-        {movies.length && <Pagination />}
+        <MovieForm onCheck={onCheck} name={'movie'} onSubmit={onSearch} />
+        <Movies
+          isSearched={isSearched}
+          isError={isError}
+          isLoading={isLoading}
+          savedMovies={savedMovies}
+          onDeleteMovie={onDeleteMovie}
+          onSaveMovie={onSaveMovie}
+          movies={movies}
+          button={'fav'}
+        />
       </main>
       <Footer />
     </>

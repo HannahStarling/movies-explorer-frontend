@@ -1,0 +1,8 @@
+export const isUrlValid = (url) => {
+  try {
+    new URL(url);
+  } catch (_) {
+    return false;
+  }
+  return true;
+};

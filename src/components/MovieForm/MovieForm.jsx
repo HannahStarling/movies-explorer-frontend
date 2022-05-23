@@ -3,10 +3,10 @@ import { SearchForm } from '../SearchForm/SearchForm';
 import { Section } from '../Section/Section';
 import './MovieForm.css';
 
-export const MovieForm = () => {
+export const MovieForm = ({ name, onSubmit, isLoading, onCheck }) => {
   return (
     <Section className='movie-form'>
-      <SearchForm />
+      <SearchForm onCheck={onCheck} isLoading={isLoading} name={name} onSubmit={onSubmit} />
     </Section>
   );
 };

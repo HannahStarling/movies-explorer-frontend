@@ -36,6 +36,16 @@
   color: #a0a0a0;
 }
 
+.auth__error {
+  box-sizing: border-box;
+  min-height: 20px;
+  display: block;
+  padding: 6px 0 0;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ff4062;
+}
+
 .auth__btn {
   margin: 115px 0 0;
   width: 100%;

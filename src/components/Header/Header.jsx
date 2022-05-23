@@ -5,11 +5,17 @@ import { MobileNavigation } from '../Navigation/MobileNavigation/MobileNavigatio
 import { Navigation } from '../Navigation/Navigation';
 import { Logo } from '../Logo/Logo';
 import './Header.css';
+import { useLocation } from 'react-router-dom';
+import { ROUTES } from '../../utils/constants';
 
-function Header({ className = '', type = 'white', location = '/' }) {
+export function Header({ loggedIn, type = 'white' }) {
   const [isOpen, setIsOpen] = useState(false);
-  const hasMenu = location !== '/' && location !== '/signup' && location !== '/signin';
-  const isLogin = location !== '/signup' && location !== '/signin';
+  const location = useLocation();
+  const { pathname } = location;
+
+  const [signup, signin] = ROUTES.auth;
+  const hasNavigation = pathname !== signup.link && pathname !== signin.link;
+  const hasMenu = loggedIn && hasNavigation;
 
   const handleOpenMenu = () => {
     setIsOpen(!isOpen);
@@ -17,7 +23,7 @@ function Header({ className = '', type = 'white', location = '/' }) {
 
   return (
     <>
-      <MobileNavigation location={location} isOpen={isOpen} onClose={handleOpenMenu} />
+      <MobileNavigation isOpen={isOpen} onClose={handleOpenMenu} />
       <header className={`header header_type_${type}`}>
         <Logo />
         {hasMenu && (
@@ -26,10 +32,8 @@ function Header({ className = '', type = 'white', location = '/' }) {
             <Menu />
           </>
         )}
-        {isLogin && <Navigation location={location} />}
+        {hasNavigation && <Navigation loggedIn={loggedIn} />}
       </header>
     </>
   );
 }
-
-export default Header;
